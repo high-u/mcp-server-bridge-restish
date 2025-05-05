@@ -1,0 +1,343 @@
+[
+    {
+        "id": "f6f2187d.f17ca8",
+        "type": "tab",
+        "label": "Flow 1",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "153de2200cc2e5d4",
+        "type": "http in",
+        "z": "f6f2187d.f17ca8",
+        "name": "",
+        "url": "/tools",
+        "method": "get",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 140,
+        "y": 560,
+        "wires": [
+            [
+                "18ab5d8469be506a"
+            ]
+        ]
+    },
+    {
+        "id": "689126a7c5f9dbc2",
+        "type": "http response",
+        "z": "f6f2187d.f17ca8",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 610,
+        "y": 780,
+        "wires": []
+    },
+    {
+        "id": "18ab5d8469be506a",
+        "type": "template",
+        "z": "f6f2187d.f17ca8",
+        "name": "tools",
+        "field": "payload",
+        "fieldType": "msg",
+        "format": "handlebars",
+        "syntax": "mustache",
+        "template": "[\n  {\n    \"name\": \"myadd\",\n    \"description\": \"２つの数値を足し算します\",\n    \"schema\": {\n      \"type\": \"object\",\n      \"properties\": {\n        \"a\": {\n          \"type\": \"number\",\n          \"description\": \"１つ目の値\"\n        },\n        \"b\": {\n          \"type\": \"number\",\n          \"description\": \"２つ目の値\"\n        }\n      },\n      \"required\": [\"a\", \"b\"]\n    },\n    \"endpoint\": \"/myadd\",\n    \"method\": \"get\"\n  },\n  {\n    \"name\": \"mysubtract\",\n    \"description\": \"２つの数値を引き算します\",\n    \"schema\": {\n      \"type\": \"object\",\n      \"properties\": {\n        \"a\": {\n          \"type\": \"number\",\n          \"description\": \"被減数（引かれる数）\"\n        },\n        \"b\": {\n          \"type\": \"number\",\n          \"description\": \"減数（引く数）\"\n        }\n      },\n      \"required\": [\"a\", \"b\"]\n    },\n    \"endpoint\": \"/mysubtract\",\n    \"method\": \"get\"\n  },\n  {\n    \"name\": \"mymultiply\",\n    \"description\": \"２つの数値を掛け算します\",\n    \"schema\": {\n      \"type\": \"object\",\n      \"properties\": {\n        \"a\": {\n          \"type\": \"number\",\n          \"description\": \"１つ目の乗数\"\n        },\n        \"b\": {\n          \"type\": \"number\",\n          \"description\": \"２つ目の乗数\"\n        }\n      },\n      \"required\": [\"a\", \"b\"]\n    },\n    \"endpoint\": \"/mymultiply\",\n    \"method\": \"get\"\n  },\n  {\n    \"name\": \"mydivide\",\n    \"description\": \"２つの数値を割り算します（b が 0 の場合はエラー）\",\n    \"schema\": {\n      \"type\": \"object\",\n      \"properties\": {\n        \"a\": {\n          \"type\": \"number\",\n          \"description\": \"被除数（割られる数）\"\n        },\n        \"b\": {\n          \"type\": \"number\",\n          \"description\": \"除数（割る数）\"\n        }\n      },\n      \"required\": [\"a\", \"b\"]\n    },\n    \"endpoint\": \"/mydivide\",\n    \"method\": \"get\"\n  },\n  {\n    \"name\": \"save_mynote\",\n    \"description\": \"私のノートに追加します\",\n    \"schema\": {\n      \"type\": \"object\",\n      \"properties\": {\n        \"content\": {\n          \"type\": \"string\",\n          \"description\": \"ノートに保存する内容\"\n        }\n      },\n      \"required\": [\"content\"]\n    },\n    \"endpoint\": \"/save_mynote\",\n    \"method\": \"post\"\n  }\n]",
+        "output": "json",
+        "x": 350,
+        "y": 560,
+        "wires": [
+            [
+                "6bfe23dff3ccebe0"
+            ]
+        ]
+    },
+    {
+        "id": "78d13a35fbf74af6",
+        "type": "http in",
+        "z": "f6f2187d.f17ca8",
+        "name": "",
+        "url": "/myadd",
+        "method": "get",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 150,
+        "y": 700,
+        "wires": [
+            [
+                "3d6b3792bfdbcd3a"
+            ]
+        ]
+    },
+    {
+        "id": "eacf7fd95f73d756",
+        "type": "http in",
+        "z": "f6f2187d.f17ca8",
+        "name": "",
+        "url": "/mysubtract",
+        "method": "get",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 160,
+        "y": 760,
+        "wires": [
+            [
+                "f376ae369d659978"
+            ]
+        ]
+    },
+    {
+        "id": "9a4cd9ceea256718",
+        "type": "http in",
+        "z": "f6f2187d.f17ca8",
+        "name": "",
+        "url": "/mydivide",
+        "method": "get",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 160,
+        "y": 880,
+        "wires": [
+            [
+                "df87634b2d1da9dc"
+            ]
+        ]
+    },
+    {
+        "id": "a001c12d345059c4",
+        "type": "http in",
+        "z": "f6f2187d.f17ca8",
+        "name": "",
+        "url": "/mymultiply",
+        "method": "get",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 160,
+        "y": 820,
+        "wires": [
+            [
+                "03cd2cb7bdb9f017"
+            ]
+        ]
+    },
+    {
+        "id": "3d6b3792bfdbcd3a",
+        "type": "function",
+        "z": "f6f2187d.f17ca8",
+        "name": "myadd",
+        "func": "msg.payload = Number(msg.payload.a) + Number(msg.payload.b) + 10;\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 350,
+        "y": 700,
+        "wires": [
+            [
+                "689126a7c5f9dbc2",
+                "e5cc886a73614890"
+            ]
+        ]
+    },
+    {
+        "id": "f376ae369d659978",
+        "type": "function",
+        "z": "f6f2187d.f17ca8",
+        "name": "mysubtract",
+        "func": "msg.payload = Number(msg.payload.a) - Number(msg.payload.b);\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 370,
+        "y": 760,
+        "wires": [
+            [
+                "689126a7c5f9dbc2"
+            ]
+        ]
+    },
+    {
+        "id": "03cd2cb7bdb9f017",
+        "type": "function",
+        "z": "f6f2187d.f17ca8",
+        "name": "mymultiply",
+        "func": "msg.payload = Number(msg.payload.a) * Number(msg.payload.b);\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 370,
+        "y": 820,
+        "wires": [
+            [
+                "689126a7c5f9dbc2"
+            ]
+        ]
+    },
+    {
+        "id": "df87634b2d1da9dc",
+        "type": "function",
+        "z": "f6f2187d.f17ca8",
+        "name": "mydivide",
+        "func": "msg.payload = Number(msg.payload.a) / Number(msg.payload.b);\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 360,
+        "y": 880,
+        "wires": [
+            [
+                "689126a7c5f9dbc2"
+            ]
+        ]
+    },
+    {
+        "id": "6bfe23dff3ccebe0",
+        "type": "http response",
+        "z": "f6f2187d.f17ca8",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 610,
+        "y": 560,
+        "wires": []
+    },
+    {
+        "id": "e5cc886a73614890",
+        "type": "debug",
+        "z": "f6f2187d.f17ca8",
+        "name": "debug 1",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 540,
+        "y": 660,
+        "wires": []
+    },
+    {
+        "id": "ee923dcef8587da5",
+        "type": "http in",
+        "z": "f6f2187d.f17ca8",
+        "name": "",
+        "url": "/save_mynote",
+        "method": "post",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 150,
+        "y": 1040,
+        "wires": [
+            [
+                "94327d36793565ab",
+                "24aa411830c2e465",
+                "a0f673155f5f12e9"
+            ]
+        ]
+    },
+    {
+        "id": "94327d36793565ab",
+        "type": "function",
+        "z": "f6f2187d.f17ca8",
+        "name": "function 1",
+        "func": "msg.payload = {id: String(new Date().getTime())};\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 400,
+        "y": 1040,
+        "wires": [
+            [
+                "c67f453edcd118b2",
+                "18b554c41c024f42"
+            ]
+        ]
+    },
+    {
+        "id": "c67f453edcd118b2",
+        "type": "http response",
+        "z": "f6f2187d.f17ca8",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 590,
+        "y": 1040,
+        "wires": []
+    },
+    {
+        "id": "18b554c41c024f42",
+        "type": "debug",
+        "z": "f6f2187d.f17ca8",
+        "name": "debug 2",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 620,
+        "y": 980,
+        "wires": []
+    },
+    {
+        "id": "24aa411830c2e465",
+        "type": "debug",
+        "z": "f6f2187d.f17ca8",
+        "name": "debug 3",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "req.headers",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 400,
+        "y": 940,
+        "wires": []
+    },
+    {
+        "id": "a0f673155f5f12e9",
+        "type": "debug",
+        "z": "f6f2187d.f17ca8",
+        "name": "debug 4",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 400,
+        "y": 980,
+        "wires": []
+    },
+    {
+        "id": "2ef56c36a7a15eb4",
+        "type": "comment",
+        "z": "f6f2187d.f17ca8",
+        "name": "ollama を呼び出し、その内容をどうにかするフロー",
+        "info": "",
+        "x": 370,
+        "y": 1220,
+        "wires": []
+    }
+]
