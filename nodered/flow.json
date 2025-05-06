@@ -1,130 +1,231 @@
 [
     {
-        "id": "f6f2187d.f17ca8",
+        "id": "2941705dff14d6d3",
         "type": "tab",
-        "label": "Flow 1",
+        "label": "Tools",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "63660bf2c87aa5d2",
+        "type": "tab",
+        "label": "MCP Servers",
         "disabled": false,
         "info": ""
     },
     {
-        "id": "153de2200cc2e5d4",
+        "id": "882c4289af40f333",
+        "type": "tab",
+        "label": "LLM",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "73065e7c18cbf279",
         "type": "http in",
-        "z": "f6f2187d.f17ca8",
+        "z": "2941705dff14d6d3",
         "name": "",
         "url": "/tools",
         "method": "get",
         "upload": false,
         "swaggerDoc": "",
         "x": 140,
-        "y": 560,
+        "y": 80,
         "wires": [
             [
-                "18ab5d8469be506a"
+                "bcbc0554649da10c"
             ]
         ]
     },
     {
-        "id": "689126a7c5f9dbc2",
+        "id": "900fdb3d1abb1a2e",
         "type": "http response",
-        "z": "f6f2187d.f17ca8",
+        "z": "2941705dff14d6d3",
         "name": "",
         "statusCode": "",
         "headers": {},
-        "x": 610,
-        "y": 780,
+        "x": 130,
+        "y": 740,
         "wires": []
     },
     {
-        "id": "18ab5d8469be506a",
-        "type": "template",
-        "z": "f6f2187d.f17ca8",
-        "name": "tools",
-        "field": "payload",
-        "fieldType": "msg",
-        "format": "handlebars",
-        "syntax": "mustache",
-        "template": "[\n  {\n    \"name\": \"myadd\",\n    \"description\": \"２つの数値を足し算します\",\n    \"schema\": {\n      \"type\": \"object\",\n      \"properties\": {\n        \"a\": {\n          \"type\": \"number\",\n          \"description\": \"１つ目の値\"\n        },\n        \"b\": {\n          \"type\": \"number\",\n          \"description\": \"２つ目の値\"\n        }\n      },\n      \"required\": [\"a\", \"b\"]\n    },\n    \"endpoint\": \"/myadd\",\n    \"method\": \"get\"\n  },\n  {\n    \"name\": \"mysubtract\",\n    \"description\": \"２つの数値を引き算します\",\n    \"schema\": {\n      \"type\": \"object\",\n      \"properties\": {\n        \"a\": {\n          \"type\": \"number\",\n          \"description\": \"被減数（引かれる数）\"\n        },\n        \"b\": {\n          \"type\": \"number\",\n          \"description\": \"減数（引く数）\"\n        }\n      },\n      \"required\": [\"a\", \"b\"]\n    },\n    \"endpoint\": \"/mysubtract\",\n    \"method\": \"get\"\n  },\n  {\n    \"name\": \"mymultiply\",\n    \"description\": \"２つの数値を掛け算します\",\n    \"schema\": {\n      \"type\": \"object\",\n      \"properties\": {\n        \"a\": {\n          \"type\": \"number\",\n          \"description\": \"１つ目の乗数\"\n        },\n        \"b\": {\n          \"type\": \"number\",\n          \"description\": \"２つ目の乗数\"\n        }\n      },\n      \"required\": [\"a\", \"b\"]\n    },\n    \"endpoint\": \"/mymultiply\",\n    \"method\": \"get\"\n  },\n  {\n    \"name\": \"mydivide\",\n    \"description\": \"２つの数値を割り算します（b が 0 の場合はエラー）\",\n    \"schema\": {\n      \"type\": \"object\",\n      \"properties\": {\n        \"a\": {\n          \"type\": \"number\",\n          \"description\": \"被除数（割られる数）\"\n        },\n        \"b\": {\n          \"type\": \"number\",\n          \"description\": \"除数（割る数）\"\n        }\n      },\n      \"required\": [\"a\", \"b\"]\n    },\n    \"endpoint\": \"/mydivide\",\n    \"method\": \"get\"\n  },\n  {\n    \"name\": \"save_mynote\",\n    \"description\": \"私のノートに追加します\",\n    \"schema\": {\n      \"type\": \"object\",\n      \"properties\": {\n        \"content\": {\n          \"type\": \"string\",\n          \"description\": \"ノートに保存する内容\"\n        }\n      },\n      \"required\": [\"content\"]\n    },\n    \"endpoint\": \"/save_mynote\",\n    \"method\": \"post\"\n  }\n]",
-        "output": "json",
-        "x": 350,
-        "y": 560,
+        "id": "cad9256b2ad7bbb8",
+        "type": "function",
+        "z": "2941705dff14d6d3",
+        "name": "myadd",
+        "func": "msg.payload.push({\n    \"name\": \"myadd\",\n    \"description\": \"２つの数値を足し算します\",\n    \"schema\": {\n        \"type\": \"object\",\n        \"properties\": {\n            \"a\": {\n                \"type\": \"number\",\n                \"description\": \"１つ目の値\"\n            },\n            \"b\": {\n                \"type\": \"number\",\n                \"description\": \"２つ目の値\"\n            }\n        },\n        \"required\": [\"a\", \"b\"]\n    },\n    \"endpoint\": \"/myadd\",\n    \"method\": \"get\"\n});\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 130,
+        "y": 200,
         "wires": [
             [
-                "6bfe23dff3ccebe0"
+                "a66c3b556c22af9f"
             ]
         ]
     },
     {
-        "id": "78d13a35fbf74af6",
+        "id": "a66c3b556c22af9f",
+        "type": "function",
+        "z": "2941705dff14d6d3",
+        "name": "mysubtract",
+        "func": "msg.payload.push(\n{\n    \"name\": \"mysubtract\",\n    \"description\": \"２つの数値を引き算します\",\n    \"schema\": {\n        \"type\": \"object\",\n        \"properties\": {\n            \"a\": {\n                \"type\": \"number\",\n                \"description\": \"被減数（引かれる数）\"\n            },\n            \"b\": {\n                \"type\": \"number\",\n                \"description\": \"減数（引く数）\"\n            }\n        },\n        \"required\": [\"a\", \"b\"]\n    },\n    \"endpoint\": \"/mysubtract\",\n    \"method\": \"get\"\n});\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 150,
+        "y": 260,
+        "wires": [
+            [
+                "fe5c4cfe9bca561b"
+            ]
+        ]
+    },
+    {
+        "id": "fe5c4cfe9bca561b",
+        "type": "function",
+        "z": "2941705dff14d6d3",
+        "name": "create_qrcode",
+        "func": "msg.payload.push({\n    \"name\": \"create_qrcode\",\n    \"description\": \"QRコードをDataURIで返す\",\n    \"schema\": {\n        \"type\": \"object\",\n        \"properties\": {\n            \"url\": {\n                \"type\": \"string\",\n                \"description\": \"QRコードに含めるURL\"\n            },\n            \"required\": [\"url\"]\n        }\n    },\n    \"endpoint\": \"/create_qrcode\",\n    \"method\": \"get\"\n});\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 160,
+        "y": 320,
+        "wires": [
+            [
+                "afc554a81459b696"
+            ]
+        ]
+    },
+    {
+        "id": "bcbc0554649da10c",
+        "type": "change",
+        "z": "2941705dff14d6d3",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "[]",
+                "tot": "json"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 160,
+        "y": 140,
+        "wires": [
+            [
+                "cad9256b2ad7bbb8"
+            ]
+        ]
+    },
+    {
+        "id": "afc554a81459b696",
+        "type": "function",
+        "z": "2941705dff14d6d3",
+        "name": "push_gitlab",
+        "func": "msg.payload.push({\n    \"name\": \"push_gitlab\",\n    \"description\": \"ソースコードをGitlabにプッシュする\",\n    \"schema\": {\n        \"type\": \"object\",\n        \"properties\": {\n            \"sourcecode\": {\n                \"type\": \"string\",\n                \"description\": \"プッシュするソースコード\"\n            },\n            \"required\": [\"sourcecode\"]\n        }\n    },\n    \"endpoint\": \"/push_gitlab\",\n    \"method\": \"post\"\n});\nreturn msg;\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 150,
+        "y": 380,
+        "wires": [
+            [
+                "3a30287d3001eb68"
+            ]
+        ]
+    },
+    {
+        "id": "3a30287d3001eb68",
+        "type": "function",
+        "z": "2941705dff14d6d3",
+        "name": "post_slack",
+        "func": "msg.payload.push({\n    \"name\": \"post_slack\",\n    \"description\": \"Slackに投稿する\",\n    \"schema\": {\n        \"type\": \"object\",\n        \"properties\": {\n            \"postmessage\": {\n                \"type\": \"string\",\n                \"description\": \"Slackに投稿するメッセージ\"\n            },\n            \"required\": [\"postmessage\"]\n        }\n    },\n    \"endpoint\": \"/post_slack\",\n    \"method\": \"post\"\n});\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 150,
+        "y": 440,
+        "wires": [
+            [
+                "900fdb3d1abb1a2e"
+            ]
+        ]
+    },
+    {
+        "id": "66b03ff993c43b1e",
+        "type": "http response",
+        "z": "63660bf2c87aa5d2",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 230,
+        "y": 200,
+        "wires": []
+    },
+    {
+        "id": "03332531720bb0ad",
         "type": "http in",
-        "z": "f6f2187d.f17ca8",
+        "z": "63660bf2c87aa5d2",
         "name": "",
         "url": "/myadd",
         "method": "get",
         "upload": false,
         "swaggerDoc": "",
-        "x": 150,
-        "y": 700,
+        "x": 250,
+        "y": 80,
         "wires": [
             [
-                "3d6b3792bfdbcd3a"
+                "ed39622174a0159a"
             ]
         ]
     },
     {
-        "id": "eacf7fd95f73d756",
+        "id": "391131c1d31b3edc",
         "type": "http in",
-        "z": "f6f2187d.f17ca8",
+        "z": "63660bf2c87aa5d2",
         "name": "",
         "url": "/mysubtract",
         "method": "get",
         "upload": false,
         "swaggerDoc": "",
-        "x": 160,
-        "y": 760,
+        "x": 560,
+        "y": 80,
         "wires": [
             [
-                "f376ae369d659978"
+                "adab78ce827655d9"
             ]
         ]
     },
     {
-        "id": "9a4cd9ceea256718",
-        "type": "http in",
-        "z": "f6f2187d.f17ca8",
-        "name": "",
-        "url": "/mydivide",
-        "method": "get",
-        "upload": false,
-        "swaggerDoc": "",
-        "x": 160,
-        "y": 880,
-        "wires": [
-            [
-                "df87634b2d1da9dc"
-            ]
-        ]
-    },
-    {
-        "id": "a001c12d345059c4",
-        "type": "http in",
-        "z": "f6f2187d.f17ca8",
-        "name": "",
-        "url": "/mymultiply",
-        "method": "get",
-        "upload": false,
-        "swaggerDoc": "",
-        "x": 160,
-        "y": 820,
-        "wires": [
-            [
-                "03cd2cb7bdb9f017"
-            ]
-        ]
-    },
-    {
-        "id": "3d6b3792bfdbcd3a",
+        "id": "ed39622174a0159a",
         "type": "function",
-        "z": "f6f2187d.f17ca8",
+        "z": "63660bf2c87aa5d2",
         "name": "myadd",
         "func": "msg.payload = Number(msg.payload.a) + Number(msg.payload.b) + 10;\nreturn msg;",
         "outputs": 1,
@@ -133,19 +234,19 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 350,
-        "y": 700,
+        "x": 230,
+        "y": 140,
         "wires": [
             [
-                "689126a7c5f9dbc2",
-                "e5cc886a73614890"
+                "66b03ff993c43b1e"
             ]
-        ]
+        ],
+        "icon": "font-awesome/fa-calculator"
     },
     {
-        "id": "f376ae369d659978",
+        "id": "adab78ce827655d9",
         "type": "function",
-        "z": "f6f2187d.f17ca8",
+        "z": "63660bf2c87aa5d2",
         "name": "mysubtract",
         "func": "msg.payload = Number(msg.payload.a) - Number(msg.payload.b);\nreturn msg;",
         "outputs": 1,
@@ -154,105 +255,37 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 370,
-        "y": 760,
+        "x": 550,
+        "y": 140,
         "wires": [
             [
-                "689126a7c5f9dbc2"
+                "62cef6cb340b58b3"
             ]
-        ]
+        ],
+        "icon": "font-awesome/fa-calculator"
     },
     {
-        "id": "03cd2cb7bdb9f017",
-        "type": "function",
-        "z": "f6f2187d.f17ca8",
-        "name": "mymultiply",
-        "func": "msg.payload = Number(msg.payload.a) * Number(msg.payload.b);\nreturn msg;",
-        "outputs": 1,
-        "timeout": 0,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 370,
-        "y": 820,
-        "wires": [
-            [
-                "689126a7c5f9dbc2"
-            ]
-        ]
-    },
-    {
-        "id": "df87634b2d1da9dc",
-        "type": "function",
-        "z": "f6f2187d.f17ca8",
-        "name": "mydivide",
-        "func": "msg.payload = Number(msg.payload.a) / Number(msg.payload.b);\nreturn msg;",
-        "outputs": 1,
-        "timeout": 0,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 360,
-        "y": 880,
-        "wires": [
-            [
-                "689126a7c5f9dbc2"
-            ]
-        ]
-    },
-    {
-        "id": "6bfe23dff3ccebe0",
-        "type": "http response",
-        "z": "f6f2187d.f17ca8",
-        "name": "",
-        "statusCode": "",
-        "headers": {},
-        "x": 610,
-        "y": 560,
-        "wires": []
-    },
-    {
-        "id": "e5cc886a73614890",
-        "type": "debug",
-        "z": "f6f2187d.f17ca8",
-        "name": "debug 1",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "false",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 540,
-        "y": 660,
-        "wires": []
-    },
-    {
-        "id": "ee923dcef8587da5",
+        "id": "456a3d702ae7e8cf",
         "type": "http in",
-        "z": "f6f2187d.f17ca8",
+        "z": "63660bf2c87aa5d2",
         "name": "",
         "url": "/save_mynote",
         "method": "post",
         "upload": false,
         "swaggerDoc": "",
-        "x": 150,
-        "y": 1040,
+        "x": 870,
+        "y": 500,
         "wires": [
             [
-                "94327d36793565ab",
-                "24aa411830c2e465",
-                "a0f673155f5f12e9"
+                "32e9409363576109"
             ]
         ]
     },
     {
-        "id": "94327d36793565ab",
+        "id": "32e9409363576109",
         "type": "function",
-        "z": "f6f2187d.f17ca8",
-        "name": "function 1",
+        "z": "63660bf2c87aa5d2",
+        "name": "Saved",
         "func": "msg.payload = {id: String(new Date().getTime())};\nreturn msg;",
         "outputs": 1,
         "timeout": 0,
@@ -260,84 +293,404 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 400,
-        "y": 1040,
+        "x": 830,
+        "y": 560,
         "wires": [
             [
-                "c67f453edcd118b2",
-                "18b554c41c024f42"
+                "565e2a5d5759b9f9"
+            ]
+        ],
+        "icon": "font-awesome/fa-sticky-note"
+    },
+    {
+        "id": "565e2a5d5759b9f9",
+        "type": "http response",
+        "z": "63660bf2c87aa5d2",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 830,
+        "y": 620,
+        "wires": []
+    },
+    {
+        "id": "e66a7a341d93cb00",
+        "type": "http in",
+        "z": "63660bf2c87aa5d2",
+        "name": "",
+        "url": "/create_qrcode",
+        "method": "get",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 870,
+        "y": 80,
+        "wires": [
+            [
+                "765e91fc76e4ca4d"
             ]
         ]
     },
     {
-        "id": "c67f453edcd118b2",
+        "id": "b9f58667741a917e",
         "type": "http response",
-        "z": "f6f2187d.f17ca8",
+        "z": "63660bf2c87aa5d2",
         "name": "",
         "statusCode": "",
         "headers": {},
-        "x": 590,
-        "y": 1040,
+        "x": 830,
+        "y": 380,
         "wires": []
     },
     {
-        "id": "18b554c41c024f42",
-        "type": "debug",
-        "z": "f6f2187d.f17ca8",
-        "name": "debug 2",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "false",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 620,
-        "y": 980,
+        "id": "9d3a4ea0bd63dc4b",
+        "type": "qrcode-generator",
+        "z": "63660bf2c87aa5d2",
+        "name": "",
+        "qrtype": "text2qr",
+        "text2qrText": "",
+        "ssid": "",
+        "hiddenssid": false,
+        "wifitype": "",
+        "phonenum": "",
+        "smsphonenum": "",
+        "smstext": "",
+        "mailto": "",
+        "mailsubject": "",
+        "mailbody": "",
+        "latitude": "",
+        "longitude": "",
+        "colorlight": "#ffffff",
+        "colordark": "#000000",
+        "printstatus": false,
+        "x": 850,
+        "y": 200,
+        "wires": [
+            [
+                "24cab41c131fea90"
+            ]
+        ]
+    },
+    {
+        "id": "765e91fc76e4ca4d",
+        "type": "change",
+        "z": "63660bf2c87aa5d2",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "qrcodeinput",
+                "pt": "msg",
+                "to": "payload.url",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 880,
+        "y": 140,
+        "wires": [
+            [
+                "9d3a4ea0bd63dc4b"
+            ]
+        ]
+    },
+    {
+        "id": "7f038afa82e1f798",
+        "type": "http request",
+        "z": "63660bf2c87aa5d2",
+        "name": "Slack Bot",
+        "method": "POST",
+        "ret": "txt",
+        "paytoqs": "ignore",
+        "url": "https://slack.com/api/chat.postMessage",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "insecureHTTPParser": false,
+        "authType": "",
+        "senderr": false,
+        "headers": [
+            {
+                "keyType": "other",
+                "keyValue": "Content-type",
+                "valueType": "other",
+                "valueValue": "application/json"
+            },
+            {
+                "keyType": "other",
+                "keyValue": "Authorization",
+                "valueType": "msg",
+                "valueValue": "slackAccessToken"
+            }
+        ],
+        "x": 540,
+        "y": 680,
+        "wires": [
+            [
+                "6cefc819efb49be2"
+            ]
+        ],
+        "icon": "node-red-contrib-chatbot/slack.svg"
+    },
+    {
+        "id": "9008fa3b4111775e",
+        "type": "function",
+        "z": "63660bf2c87aa5d2",
+        "name": "Message",
+        "func": "msg.payload = {\n    channel: \"C08R4QYHG83\",\n    text: `${msg.payload.postmessage}`\n};\nreturn msg;\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 540,
+        "y": 560,
+        "wires": [
+            [
+                "e75c3fc290b9ebfc"
+            ]
+        ],
+        "icon": "node-red-contrib-chatbot/chatbot-waiting.png"
+    },
+    {
+        "id": "28c9cbb31244e9d4",
+        "type": "http request",
+        "z": "63660bf2c87aa5d2",
+        "name": "Gitlab Bot",
+        "method": "PUT",
+        "ret": "txt",
+        "paytoqs": "ignore",
+        "url": "https://gitlab.com/api/v4/projects/high1661211%2Ffirst/repository/files/index.html",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "insecureHTTPParser": false,
+        "authType": "",
+        "senderr": false,
+        "headers": [
+            {
+                "keyType": "other",
+                "keyValue": "Content-type",
+                "valueType": "other",
+                "valueValue": "application/json"
+            },
+            {
+                "keyType": "other",
+                "keyValue": "PRIVATE-TOKEN",
+                "valueType": "msg",
+                "valueValue": "gitlabPrivateToken"
+            }
+        ],
+        "x": 240,
+        "y": 740,
+        "wires": [
+            [
+                "fa67b1a60b0a4b12"
+            ]
+        ],
+        "icon": "node-red-contrib-gitlabapi/icon.png"
+    },
+    {
+        "id": "4165480c9851fe5e",
+        "type": "function",
+        "z": "63660bf2c87aa5d2",
+        "name": "Branch",
+        "func": "msg.payload = {\n    branch: \"main\",\n    author_email: \"zen.crazyd@gmail.com\",\n    author_name: \"high-u\",\n    encoding: \"base64\",\n    content: `${msg.payload.sourcecode}`, \n    commit_message: \"Add index.html\"\n};\nreturn msg;\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 240,
+        "y": 620,
+        "wires": [
+            [
+                "b319cbbb86a389af"
+            ]
+        ],
+        "icon": "node-red-contrib-chatbot/chatbot-waiting.png"
+    },
+    {
+        "id": "b185243b1fa963c4",
+        "type": "http in",
+        "z": "63660bf2c87aa5d2",
+        "name": "",
+        "url": "/post_slack",
+        "method": "post",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 570,
+        "y": 500,
+        "wires": [
+            [
+                "9008fa3b4111775e"
+            ]
+        ]
+    },
+    {
+        "id": "5883c46fda2f31eb",
+        "type": "http in",
+        "z": "63660bf2c87aa5d2",
+        "name": "",
+        "url": "/push_gitlab",
+        "method": "post",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 270,
+        "y": 500,
+        "wires": [
+            [
+                "7914b52331095538"
+            ]
+        ]
+    },
+    {
+        "id": "7914b52331095538",
+        "type": "base64",
+        "z": "63660bf2c87aa5d2",
+        "name": "",
+        "action": "str",
+        "property": "payload.sourcecode",
+        "x": 240,
+        "y": 560,
+        "wires": [
+            [
+                "4165480c9851fe5e"
+            ]
+        ]
+    },
+    {
+        "id": "6cefc819efb49be2",
+        "type": "http response",
+        "z": "63660bf2c87aa5d2",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 530,
+        "y": 740,
         "wires": []
     },
     {
-        "id": "24aa411830c2e465",
-        "type": "debug",
-        "z": "f6f2187d.f17ca8",
-        "name": "debug 3",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "req.headers",
-        "targetType": "msg",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 400,
-        "y": 940,
+        "id": "fa67b1a60b0a4b12",
+        "type": "http response",
+        "z": "63660bf2c87aa5d2",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 230,
+        "y": 800,
         "wires": []
     },
     {
-        "id": "a0f673155f5f12e9",
-        "type": "debug",
-        "z": "f6f2187d.f17ca8",
-        "name": "debug 4",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "payload",
-        "targetType": "msg",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 400,
-        "y": 980,
+        "id": "62cef6cb340b58b3",
+        "type": "http response",
+        "z": "63660bf2c87aa5d2",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 530,
+        "y": 200,
         "wires": []
     },
     {
-        "id": "2ef56c36a7a15eb4",
+        "id": "24cab41c131fea90",
+        "type": "change",
+        "z": "63660bf2c87aa5d2",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload.DataURI",
+                "pt": "msg",
+                "to": "payload",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 890,
+        "y": 260,
+        "wires": [
+            [
+                "a55d773afbb34af0"
+            ]
+        ]
+    },
+    {
+        "id": "a55d773afbb34af0",
+        "type": "function",
+        "z": "63660bf2c87aa5d2",
+        "name": "function 2",
+        "func": "msg.payload = msg.payload = {DataURI: msg.payload};\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 840,
+        "y": 320,
+        "wires": [
+            [
+                "b9f58667741a917e"
+            ]
+        ],
+        "icon": "node-red-contrib-chatbot/chatbot-image.png"
+    },
+    {
+        "id": "e75c3fc290b9ebfc",
+        "type": "credentials",
+        "z": "63660bf2c87aa5d2",
+        "name": "",
+        "props": [
+            {
+                "value": "slackAccessToken",
+                "type": "msg"
+            }
+        ],
+        "x": 550,
+        "y": 620,
+        "wires": [
+            [
+                "7f038afa82e1f798"
+            ]
+        ]
+    },
+    {
+        "id": "b319cbbb86a389af",
+        "type": "credentials",
+        "z": "63660bf2c87aa5d2",
+        "name": "",
+        "props": [
+            {
+                "value": "gitlabPrivateToken",
+                "type": "msg"
+            }
+        ],
+        "x": 250,
+        "y": 680,
+        "wires": [
+            [
+                "28c9cbb31244e9d4"
+            ]
+        ]
+    },
+    {
+        "id": "2126f6fa07643a74",
         "type": "comment",
-        "z": "f6f2187d.f17ca8",
+        "z": "882c4289af40f333",
         "name": "ollama を呼び出し、その内容をどうにかするフロー",
         "info": "",
-        "x": 370,
-        "y": 1220,
+        "x": 230,
+        "y": 80,
         "wires": []
     }
 ]

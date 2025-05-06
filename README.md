@@ -17,8 +17,13 @@
 }
 ```
 
-## node-red
+## Node-RED
 
 ```bash
 docker run -it -p 1880:1880 -v myNodeREDdata:/data --name mynodered nodered/node-red
 ```
+
+credentials ノードの値を設定する
+
+- slackAccessToken: "glpat-xxxxxxxxxxxxxxxxxxxx"
+- gitlabPrivateToken: "Bearer xoxb-xxxxxxxxxxxxx-xxxxxxxxxxxxx-xxxxxxxxxxxxxxxxxxxxxxxx"
