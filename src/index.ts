@@ -1,4 +1,4 @@
-import { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
+import { McpServer, ResourceTemplate } from "@modelcontextprotocol/sdk/server/mcp.js";
 import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js";
 import { z, ZodTypeAny } from "zod";
 
@@ -82,6 +82,17 @@ for (const def of toolDefs) {
     }
   );
 }
+
+server.resource(
+  "dummy",
+  new ResourceTemplate("dummy://{dummy}", { list: undefined }),
+  async (uri, { dummy }) => ({
+    contents: [{
+      uri: uri.href,
+      text: `${dummy}`
+    }]
+  })
+);
 
 (async () => {
   const transport = new StdioServerTransport();
