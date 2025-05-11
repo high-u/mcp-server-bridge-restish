@@ -1,20 +1,3 @@
-# MCP Server Bridge Restish
+# Bridge Restish - MCP Server
 
-## Claude Desktop
-
-claude_desktop_config.json
-
-```json
-{
-  "mcpServers": {
-    "bridge_restish": {
-      "command": "npx",
-      "args": [
-        "mcp-server-bridge-restish",
-        "http://localhost:1880",
-        "XXXXXXXXXXX"
-      ]
-    }
-  }
-}
-```
+<span style="color: red">This is an experimental program.</span>
