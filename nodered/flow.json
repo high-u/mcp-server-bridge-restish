@@ -15,12 +15,145 @@
         "info": ""
     },
     {
-        "id": "882c4289af40f333",
-        "type": "tab",
-        "label": "LLM",
-        "disabled": false,
-        "info": "",
-        "env": []
+        "id": "757f3638b8761640",
+        "type": "group",
+        "z": "63660bf2c87aa5d2",
+        "style": {
+            "stroke": "#999999",
+            "stroke-opacity": "1",
+            "fill": "none",
+            "fill-opacity": "1",
+            "label": true,
+            "label-position": "nw",
+            "color": "#a4a4a4"
+        },
+        "nodes": [
+            "2064fa581c2587df",
+            "d81cd82767847310"
+        ],
+        "x": 354,
+        "y": 59,
+        "w": 172,
+        "h": 142
+    },
+    {
+        "id": "520ff2f3884c30ff",
+        "type": "group",
+        "z": "63660bf2c87aa5d2",
+        "style": {
+            "stroke": "#999999",
+            "stroke-opacity": "1",
+            "fill": "none",
+            "fill-opacity": "1",
+            "label": true,
+            "label-position": "nw",
+            "color": "#a4a4a4"
+        },
+        "nodes": [
+            "a6ffd7c1abacded5",
+            "e05209f738863d81"
+        ],
+        "x": 354,
+        "y": 259,
+        "w": 152,
+        "h": 142
+    },
+    {
+        "id": "3acf4410f7d7560d",
+        "type": "group",
+        "z": "63660bf2c87aa5d2",
+        "style": {
+            "stroke": "#999999",
+            "stroke-opacity": "1",
+            "fill": "none",
+            "fill-opacity": "1",
+            "label": true,
+            "label-position": "nw",
+            "color": "#a4a4a4"
+        },
+        "nodes": [
+            "9d3a4ea0bd63dc4b",
+            "765e91fc76e4ca4d",
+            "da7f8bb7d2ea26b6"
+        ],
+        "x": 354,
+        "y": 459,
+        "w": 212,
+        "h": 202
+    },
+    {
+        "id": "fd6c07a75a973db4",
+        "type": "group",
+        "z": "63660bf2c87aa5d2",
+        "style": {
+            "stroke": "#999999",
+            "stroke-opacity": "1",
+            "fill": "none",
+            "fill-opacity": "1",
+            "label": true,
+            "label-position": "nw",
+            "color": "#a4a4a4"
+        },
+        "nodes": [
+            "28c9cbb31244e9d4",
+            "4165480c9851fe5e",
+            "7914b52331095538",
+            "b319cbbb86a389af",
+            "01bcf6ca81f8ea0b"
+        ],
+        "x": 354,
+        "y": 1099,
+        "w": 212,
+        "h": 322
+    },
+    {
+        "id": "937c445cda43e2d5",
+        "type": "group",
+        "z": "63660bf2c87aa5d2",
+        "style": {
+            "stroke": "#999999",
+            "stroke-opacity": "1",
+            "fill": "none",
+            "fill-opacity": "1",
+            "label": true,
+            "label-position": "nw",
+            "color": "#a4a4a4"
+        },
+        "nodes": [
+            "7f038afa82e1f798",
+            "9008fa3b4111775e",
+            "e75c3fc290b9ebfc",
+            "54c32a603cfae4d1"
+        ],
+        "x": 354,
+        "y": 1479,
+        "w": 192,
+        "h": 262
+    },
+    {
+        "id": "a30da680b9506adf",
+        "type": "group",
+        "z": "63660bf2c87aa5d2",
+        "style": {
+            "stroke": "#999999",
+            "stroke-opacity": "1",
+            "fill": "none",
+            "fill-opacity": "1",
+            "label": true,
+            "label-position": "nw",
+            "color": "#a4a4a4"
+        },
+        "nodes": [
+            "843fe670aac28387",
+            "3b3c71d09993ffa7",
+            "929a26a7ede2fd81",
+            "a3a5b03942c30eb4",
+            "f8eee699ea867017"
+        ],
+        "x": 354,
+        "y": 719,
+        "w": 192,
+        "h": 322
     },
     {
         "id": "73065e7c18cbf279",
@@ -31,13 +164,14 @@
         "method": "get",
         "upload": false,
         "swaggerDoc": "",
-        "x": 140,
-        "y": 80,
+        "x": 115,
+        "y": 100,
         "wires": [
             [
                 "bcbc0554649da10c"
             ]
-        ]
+        ],
+        "l": false
     },
     {
         "id": "900fdb3d1abb1a2e",
@@ -46,69 +180,10 @@
         "name": "",
         "statusCode": "",
         "headers": {},
-        "x": 130,
-        "y": 740,
-        "wires": []
-    },
-    {
-        "id": "cad9256b2ad7bbb8",
-        "type": "function",
-        "z": "2941705dff14d6d3",
-        "name": "myadd",
-        "func": "msg.payload.push({\n    \"name\": \"myadd\",\n    \"description\": \"２つの数値を足し算します\",\n    \"schema\": {\n        \"type\": \"object\",\n        \"properties\": {\n            \"a\": {\n                \"type\": \"number\",\n                \"description\": \"１つ目の値\"\n            },\n            \"b\": {\n                \"type\": \"number\",\n                \"description\": \"２つ目の値\"\n            }\n        },\n        \"required\": [\"a\", \"b\"]\n    },\n    \"endpoint\": \"/myadd\",\n    \"method\": \"get\"\n});\nreturn msg;",
-        "outputs": 1,
-        "timeout": 0,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 130,
-        "y": 200,
-        "wires": [
-            [
-                "a66c3b556c22af9f"
-            ]
-        ]
-    },
-    {
-        "id": "a66c3b556c22af9f",
-        "type": "function",
-        "z": "2941705dff14d6d3",
-        "name": "mysubtract",
-        "func": "msg.payload.push(\n{\n    \"name\": \"mysubtract\",\n    \"description\": \"２つの数値を引き算します\",\n    \"schema\": {\n        \"type\": \"object\",\n        \"properties\": {\n            \"a\": {\n                \"type\": \"number\",\n                \"description\": \"被減数（引かれる数）\"\n            },\n            \"b\": {\n                \"type\": \"number\",\n                \"description\": \"減数（引く数）\"\n            }\n        },\n        \"required\": [\"a\", \"b\"]\n    },\n    \"endpoint\": \"/mysubtract\",\n    \"method\": \"get\"\n});\nreturn msg;",
-        "outputs": 1,
-        "timeout": 0,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 150,
-        "y": 260,
-        "wires": [
-            [
-                "fe5c4cfe9bca561b"
-            ]
-        ]
-    },
-    {
-        "id": "fe5c4cfe9bca561b",
-        "type": "function",
-        "z": "2941705dff14d6d3",
-        "name": "create_qrcode",
-        "func": "msg.payload.push({\n    \"name\": \"create_qrcode\",\n    \"description\": \"QRコードをDataURIで返す\",\n    \"schema\": {\n        \"type\": \"object\",\n        \"properties\": {\n            \"url\": {\n                \"type\": \"string\",\n                \"description\": \"QRコードに含めるURL\"\n            },\n            \"required\": [\"url\"]\n        }\n    },\n    \"endpoint\": \"/create_qrcode\",\n    \"method\": \"get\"\n});\nreturn msg;",
-        "outputs": 1,
-        "timeout": 0,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 160,
-        "y": 320,
-        "wires": [
-            [
-                "afc554a81459b696"
-            ]
-        ]
+        "x": 725,
+        "y": 400,
+        "wires": [],
+        "l": false
     },
     {
         "id": "bcbc0554649da10c",
@@ -129,53 +204,166 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 160,
-        "y": 140,
+        "x": 185,
+        "y": 100,
         "wires": [
             [
-                "cad9256b2ad7bbb8"
+                "1c613ba096f48226"
             ]
-        ]
+        ],
+        "l": false
     },
     {
-        "id": "afc554a81459b696",
-        "type": "function",
+        "id": "da1576dd1f48e6f8",
+        "type": "template",
+        "z": "2941705dff14d6d3",
+        "name": "myadd",
+        "field": "payload.myadd",
+        "fieldType": "msg",
+        "format": "yaml",
+        "syntax": "mustache",
+        "template": "name: myadd\ndescription: ２つの数値を足し算します\nschema:\n  type: object\n  properties:\n    a:\n      type: number\n      description: １つ目の値\n    b:\n      type: number\n      description: ２つ目の値\n  required:\n  - a\n  - b\nendpoint: \"/myadd\"\nmethod: get\n",
+        "output": "yaml",
+        "x": 350,
+        "y": 160,
+        "wires": [
+            [
+                "3b0fa60c4a4995d3"
+            ]
+        ],
+        "icon": "font-awesome/fa-file-text"
+    },
+    {
+        "id": "3b0fa60c4a4995d3",
+        "type": "template",
+        "z": "2941705dff14d6d3",
+        "name": "create_qrcode",
+        "field": "payload.create_qrcode",
+        "fieldType": "msg",
+        "format": "yaml",
+        "syntax": "mustache",
+        "template": "name: create_qrcode\ndescription: QRコードをDataURIで返す\nschema:\n  type: object\n  properties:\n    url:\n      type: string\n      description: QRコードに含めるURL\n    required:\n    - url\nendpoint: \"/create_qrcode\"\nmethod: get\n",
+        "output": "yaml",
+        "x": 380,
+        "y": 220,
+        "wires": [
+            [
+                "1de69f862b8c0b60"
+            ]
+        ],
+        "icon": "font-awesome/fa-file-text"
+    },
+    {
+        "id": "d4e25b0ccee9e06d",
+        "type": "template",
         "z": "2941705dff14d6d3",
         "name": "push_gitlab",
-        "func": "msg.payload.push({\n    \"name\": \"push_gitlab\",\n    \"description\": \"ソースコードをGitlabにプッシュする\",\n    \"schema\": {\n        \"type\": \"object\",\n        \"properties\": {\n            \"sourcecode\": {\n                \"type\": \"string\",\n                \"description\": \"プッシュするソースコード\"\n            },\n            \"required\": [\"sourcecode\"]\n        }\n    },\n    \"endpoint\": \"/push_gitlab\",\n    \"method\": \"post\"\n});\nreturn msg;\n",
-        "outputs": 1,
-        "timeout": 0,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 150,
-        "y": 380,
+        "field": "payload.push_gitlab",
+        "fieldType": "msg",
+        "format": "yaml",
+        "syntax": "mustache",
+        "template": "name: push_gitlab\ndescription: ソースコードをGitlabにプッシュする\nschema:\n  type: object\n  properties:\n    sourcecode:\n      type: string\n      description: プッシュするソースコード\n    required:\n    - sourcecode\nendpoint: \"/push_gitlab\"\nmethod: post\n",
+        "output": "yaml",
+        "x": 370,
+        "y": 340,
         "wires": [
             [
-                "3a30287d3001eb68"
+                "aac2d292d1d84650"
             ]
-        ]
+        ],
+        "icon": "font-awesome/fa-file-text"
     },
     {
-        "id": "3a30287d3001eb68",
-        "type": "function",
+        "id": "aac2d292d1d84650",
+        "type": "template",
         "z": "2941705dff14d6d3",
         "name": "post_slack",
-        "func": "msg.payload.push({\n    \"name\": \"post_slack\",\n    \"description\": \"Slackに投稿する\",\n    \"schema\": {\n        \"type\": \"object\",\n        \"properties\": {\n            \"postmessage\": {\n                \"type\": \"string\",\n                \"description\": \"Slackに投稿するメッセージ\"\n            },\n            \"required\": [\"postmessage\"]\n        }\n    },\n    \"endpoint\": \"/post_slack\",\n    \"method\": \"post\"\n});\nreturn msg;",
+        "field": "payload.post_slack",
+        "fieldType": "msg",
+        "format": "yaml",
+        "syntax": "mustache",
+        "template": "name: post_slack\ndescription: Slackに投稿する\nschema:\n  type: object\n  properties:\n    postmessage:\n      type: string\n      description: Slackに投稿するメッセージ\n    required:\n    - postmessage\nendpoint: \"/post_slack\"\nmethod: post\n",
+        "output": "yaml",
+        "x": 370,
+        "y": 400,
+        "wires": [
+            [
+                "8dec69147ee62d95"
+            ]
+        ],
+        "icon": "font-awesome/fa-file-text"
+    },
+    {
+        "id": "8dec69147ee62d95",
+        "type": "function",
+        "z": "2941705dff14d6d3",
+        "name": "o2a",
+        "func": "let arr = [];\nfor(let k of Object.keys(msg.payload)) {\n  arr.push(msg.payload[k]);\n}\nmsg.payload = arr;\nreturn msg;\n",
         "outputs": 1,
         "timeout": 0,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 150,
-        "y": 440,
+        "x": 655,
+        "y": 400,
         "wires": [
             [
                 "900fdb3d1abb1a2e"
             ]
-        ]
+        ],
+        "icon": "node-red/batch.svg",
+        "l": false
+    },
+    {
+        "id": "1c613ba096f48226",
+        "type": "template",
+        "z": "2941705dff14d6d3",
+        "name": "get_time",
+        "field": "payload.get_time",
+        "fieldType": "msg",
+        "format": "yaml",
+        "syntax": "mustache",
+        "template": "name: get_time\ndescription: 現在の日時を返す\nschema:\n  type: object\n  properties: {}\n  required: []\nendpoint: \"/get_time\"\nmethod: get\n",
+        "output": "yaml",
+        "x": 360,
+        "y": 100,
+        "wires": [
+            [
+                "da1576dd1f48e6f8"
+            ]
+        ],
+        "icon": "font-awesome/fa-file-text"
+    },
+    {
+        "id": "9ca37889e84dbec5",
+        "type": "comment",
+        "z": "2941705dff14d6d3",
+        "name": "tools",
+        "info": "",
+        "x": 150,
+        "y": 60,
+        "wires": []
+    },
+    {
+        "id": "1de69f862b8c0b60",
+        "type": "template",
+        "z": "2941705dff14d6d3",
+        "name": "get_weather",
+        "field": "payload.get_weather",
+        "fieldType": "msg",
+        "format": "yaml",
+        "syntax": "mustache",
+        "template": "name: get_weather\ndescription: 地方名から天気予報を取得する\nschema:\n  type: object\n  properties:\n    region:\n      type: string\n      description: 地方名\n    required:\n    - region\nendpoint: \"/get_weather\"\nmethod: get\n",
+        "output": "yaml",
+        "x": 370,
+        "y": 280,
+        "wires": [
+            [
+                "d4e25b0ccee9e06d"
+            ]
+        ],
+        "icon": "font-awesome/fa-file-text"
     },
     {
         "id": "66b03ff993c43b1e",
@@ -184,9 +372,10 @@
         "name": "",
         "statusCode": "",
         "headers": {},
-        "x": 230,
-        "y": 200,
-        "wires": []
+        "x": 695,
+        "y": 360,
+        "wires": [],
+        "l": false
     },
     {
         "id": "03332531720bb0ad",
@@ -197,110 +386,50 @@
         "method": "get",
         "upload": false,
         "swaggerDoc": "",
-        "x": 250,
-        "y": 80,
+        "x": 115,
+        "y": 300,
         "wires": [
             [
-                "ed39622174a0159a"
+                "a6ffd7c1abacded5"
             ]
-        ]
+        ],
+        "l": false
     },
     {
         "id": "391131c1d31b3edc",
         "type": "http in",
         "z": "63660bf2c87aa5d2",
         "name": "",
-        "url": "/mysubtract",
+        "url": "/get_weather",
         "method": "get",
         "upload": false,
         "swaggerDoc": "",
-        "x": 560,
-        "y": 80,
+        "x": 115,
+        "y": 760,
         "wires": [
             [
-                "adab78ce827655d9"
-            ]
-        ]
-    },
-    {
-        "id": "ed39622174a0159a",
-        "type": "function",
-        "z": "63660bf2c87aa5d2",
-        "name": "myadd",
-        "func": "msg.payload = Number(msg.payload.a) + Number(msg.payload.b) + 10;\nreturn msg;",
-        "outputs": 1,
-        "timeout": 0,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 230,
-        "y": 140,
-        "wires": [
-            [
-                "66b03ff993c43b1e"
+                "843fe670aac28387"
             ]
         ],
-        "icon": "font-awesome/fa-calculator"
-    },
-    {
-        "id": "adab78ce827655d9",
-        "type": "function",
-        "z": "63660bf2c87aa5d2",
-        "name": "mysubtract",
-        "func": "msg.payload = Number(msg.payload.a) - Number(msg.payload.b);\nreturn msg;",
-        "outputs": 1,
-        "timeout": 0,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 550,
-        "y": 140,
-        "wires": [
-            [
-                "62cef6cb340b58b3"
-            ]
-        ],
-        "icon": "font-awesome/fa-calculator"
+        "l": false
     },
     {
         "id": "456a3d702ae7e8cf",
         "type": "http in",
         "z": "63660bf2c87aa5d2",
         "name": "",
-        "url": "/save_mynote",
-        "method": "post",
+        "url": "/get_time",
+        "method": "get",
         "upload": false,
         "swaggerDoc": "",
-        "x": 870,
-        "y": 500,
+        "x": 115,
+        "y": 100,
         "wires": [
             [
-                "32e9409363576109"
-            ]
-        ]
-    },
-    {
-        "id": "32e9409363576109",
-        "type": "function",
-        "z": "63660bf2c87aa5d2",
-        "name": "Saved",
-        "func": "msg.payload = {id: String(new Date().getTime())};\nreturn msg;",
-        "outputs": 1,
-        "timeout": 0,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 830,
-        "y": 560,
-        "wires": [
-            [
-                "565e2a5d5759b9f9"
+                "d81cd82767847310"
             ]
         ],
-        "icon": "font-awesome/fa-sticky-note"
+        "l": false
     },
     {
         "id": "565e2a5d5759b9f9",
@@ -309,9 +438,10 @@
         "name": "",
         "statusCode": "",
         "headers": {},
-        "x": 830,
-        "y": 620,
-        "wires": []
+        "x": 695,
+        "y": 160,
+        "wires": [],
+        "l": false
     },
     {
         "id": "e66a7a341d93cb00",
@@ -322,13 +452,14 @@
         "method": "get",
         "upload": false,
         "swaggerDoc": "",
-        "x": 870,
-        "y": 80,
+        "x": 115,
+        "y": 500,
         "wires": [
             [
                 "765e91fc76e4ca4d"
             ]
-        ]
+        ],
+        "l": false
     },
     {
         "id": "b9f58667741a917e",
@@ -337,14 +468,16 @@
         "name": "",
         "statusCode": "",
         "headers": {},
-        "x": 830,
-        "y": 380,
-        "wires": []
+        "x": 695,
+        "y": 620,
+        "wires": [],
+        "l": false
     },
     {
         "id": "9d3a4ea0bd63dc4b",
         "type": "qrcode-generator",
         "z": "63660bf2c87aa5d2",
+        "g": "3acf4410f7d7560d",
         "name": "",
         "qrtype": "text2qr",
         "text2qrText": "",
@@ -362,11 +495,11 @@
         "colorlight": "#ffffff",
         "colordark": "#000000",
         "printstatus": false,
-        "x": 850,
-        "y": 200,
+        "x": 450,
+        "y": 560,
         "wires": [
             [
-                "24cab41c131fea90"
+                "da7f8bb7d2ea26b6"
             ]
         ]
     },
@@ -374,7 +507,8 @@
         "id": "765e91fc76e4ca4d",
         "type": "change",
         "z": "63660bf2c87aa5d2",
-        "name": "",
+        "g": "3acf4410f7d7560d",
+        "name": "pre processing",
         "rules": [
             {
                 "t": "set",
@@ -389,8 +523,8 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 880,
-        "y": 140,
+        "x": 460,
+        "y": 500,
         "wires": [
             [
                 "9d3a4ea0bd63dc4b"
@@ -401,6 +535,7 @@
         "id": "7f038afa82e1f798",
         "type": "http request",
         "z": "63660bf2c87aa5d2",
+        "g": "937c445cda43e2d5",
         "name": "Slack Bot",
         "method": "POST",
         "ret": "txt",
@@ -426,11 +561,11 @@
                 "valueValue": "slackAccessToken"
             }
         ],
-        "x": 540,
-        "y": 680,
+        "x": 440,
+        "y": 1640,
         "wires": [
             [
-                "6cefc819efb49be2"
+                "54c32a603cfae4d1"
             ]
         ],
         "icon": "node-red-contrib-chatbot/slack.svg"
@@ -439,6 +574,7 @@
         "id": "9008fa3b4111775e",
         "type": "function",
         "z": "63660bf2c87aa5d2",
+        "g": "937c445cda43e2d5",
         "name": "Message",
         "func": "msg.payload = {\n    channel: \"C08R4QYHG83\",\n    text: `${msg.payload.postmessage}`\n};\nreturn msg;\n",
         "outputs": 1,
@@ -447,8 +583,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 540,
-        "y": 560,
+        "x": 440,
+        "y": 1520,
         "wires": [
             [
                 "e75c3fc290b9ebfc"
@@ -460,6 +596,7 @@
         "id": "28c9cbb31244e9d4",
         "type": "http request",
         "z": "63660bf2c87aa5d2",
+        "g": "fd6c07a75a973db4",
         "name": "Gitlab Bot",
         "method": "PUT",
         "ret": "txt",
@@ -485,11 +622,11 @@
                 "valueValue": "gitlabPrivateToken"
             }
         ],
-        "x": 240,
-        "y": 740,
+        "x": 440,
+        "y": 1320,
         "wires": [
             [
-                "fa67b1a60b0a4b12"
+                "01bcf6ca81f8ea0b"
             ]
         ],
         "icon": "node-red-contrib-gitlabapi/icon.png"
@@ -498,6 +635,7 @@
         "id": "4165480c9851fe5e",
         "type": "function",
         "z": "63660bf2c87aa5d2",
+        "g": "fd6c07a75a973db4",
         "name": "Branch",
         "func": "msg.payload = {\n    branch: \"main\",\n    author_email: \"zen.crazyd@gmail.com\",\n    author_name: \"high-u\",\n    encoding: \"base64\",\n    content: `${msg.payload.sourcecode}`, \n    commit_message: \"Add index.html\"\n};\nreturn msg;\n",
         "outputs": 1,
@@ -506,8 +644,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 240,
-        "y": 620,
+        "x": 440,
+        "y": 1200,
         "wires": [
             [
                 "b319cbbb86a389af"
@@ -524,13 +662,14 @@
         "method": "post",
         "upload": false,
         "swaggerDoc": "",
-        "x": 570,
-        "y": 500,
+        "x": 115,
+        "y": 1520,
         "wires": [
             [
                 "9008fa3b4111775e"
             ]
-        ]
+        ],
+        "l": false
     },
     {
         "id": "5883c46fda2f31eb",
@@ -541,23 +680,25 @@
         "method": "post",
         "upload": false,
         "swaggerDoc": "",
-        "x": 270,
-        "y": 500,
+        "x": 115,
+        "y": 1140,
         "wires": [
             [
                 "7914b52331095538"
             ]
-        ]
+        ],
+        "l": false
     },
     {
         "id": "7914b52331095538",
         "type": "base64",
         "z": "63660bf2c87aa5d2",
-        "name": "",
+        "g": "fd6c07a75a973db4",
+        "name": "pre processing",
         "action": "str",
         "property": "payload.sourcecode",
-        "x": 240,
-        "y": 560,
+        "x": 460,
+        "y": 1140,
         "wires": [
             [
                 "4165480c9851fe5e"
@@ -571,9 +712,10 @@
         "name": "",
         "statusCode": "",
         "headers": {},
-        "x": 530,
-        "y": 740,
-        "wires": []
+        "x": 695,
+        "y": 1700,
+        "wires": [],
+        "l": false
     },
     {
         "id": "fa67b1a60b0a4b12",
@@ -582,9 +724,10 @@
         "name": "",
         "statusCode": "",
         "headers": {},
-        "x": 230,
-        "y": 800,
-        "wires": []
+        "x": 695,
+        "y": 1380,
+        "wires": [],
+        "l": false
     },
     {
         "id": "62cef6cb340b58b3",
@@ -593,62 +736,16 @@
         "name": "",
         "statusCode": "",
         "headers": {},
-        "x": 530,
-        "y": 200,
-        "wires": []
-    },
-    {
-        "id": "24cab41c131fea90",
-        "type": "change",
-        "z": "63660bf2c87aa5d2",
-        "name": "",
-        "rules": [
-            {
-                "t": "set",
-                "p": "payload.DataURI",
-                "pt": "msg",
-                "to": "payload",
-                "tot": "msg"
-            }
-        ],
-        "action": "",
-        "property": "",
-        "from": "",
-        "to": "",
-        "reg": false,
-        "x": 890,
-        "y": 260,
-        "wires": [
-            [
-                "a55d773afbb34af0"
-            ]
-        ]
-    },
-    {
-        "id": "a55d773afbb34af0",
-        "type": "function",
-        "z": "63660bf2c87aa5d2",
-        "name": "function 2",
-        "func": "msg.payload = msg.payload = {DataURI: msg.payload};\nreturn msg;",
-        "outputs": 1,
-        "timeout": 0,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 840,
-        "y": 320,
-        "wires": [
-            [
-                "b9f58667741a917e"
-            ]
-        ],
-        "icon": "node-red-contrib-chatbot/chatbot-image.png"
+        "x": 695,
+        "y": 1000,
+        "wires": [],
+        "l": false
     },
     {
         "id": "e75c3fc290b9ebfc",
         "type": "credentials",
         "z": "63660bf2c87aa5d2",
+        "g": "937c445cda43e2d5",
         "name": "",
         "props": [
             {
@@ -656,8 +753,8 @@
                 "type": "msg"
             }
         ],
-        "x": 550,
-        "y": 620,
+        "x": 450,
+        "y": 1580,
         "wires": [
             [
                 "7f038afa82e1f798"
@@ -668,6 +765,7 @@
         "id": "b319cbbb86a389af",
         "type": "credentials",
         "z": "63660bf2c87aa5d2",
+        "g": "fd6c07a75a973db4",
         "name": "",
         "props": [
             {
@@ -675,8 +773,8 @@
                 "type": "msg"
             }
         ],
-        "x": 250,
-        "y": 680,
+        "x": 450,
+        "y": 1260,
         "wires": [
             [
                 "28c9cbb31244e9d4"
@@ -684,13 +782,398 @@
         ]
     },
     {
-        "id": "2126f6fa07643a74",
+        "id": "da7f8bb7d2ea26b6",
+        "type": "change",
+        "z": "63660bf2c87aa5d2",
+        "g": "3acf4410f7d7560d",
+        "name": "result",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "{\t    \"DataURI\": $.payload\t}",
+                "tot": "jsonata"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 430,
+        "y": 620,
+        "wires": [
+            [
+                "b9f58667741a917e"
+            ]
+        ],
+        "icon": "font-awesome/fa-check-square"
+    },
+    {
+        "id": "a6ffd7c1abacded5",
+        "type": "change",
+        "z": "63660bf2c87aa5d2",
+        "g": "520ff2f3884c30ff",
+        "name": "myadd",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "$number($.payload.a) + $number($.payload.b)\t",
+                "tot": "jsonata"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 430,
+        "y": 300,
+        "wires": [
+            [
+                "e05209f738863d81"
+            ]
+        ],
+        "icon": "font-awesome/fa-calculator"
+    },
+    {
+        "id": "e05209f738863d81",
+        "type": "change",
+        "z": "63660bf2c87aa5d2",
+        "g": "520ff2f3884c30ff",
+        "name": "result",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "{\t    \"result\": $.payload\t}",
+                "tot": "jsonata"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 430,
+        "y": 360,
+        "wires": [
+            [
+                "66b03ff993c43b1e"
+            ]
+        ],
+        "icon": "font-awesome/fa-check-square"
+    },
+    {
+        "id": "01bcf6ca81f8ea0b",
+        "type": "change",
+        "z": "63660bf2c87aa5d2",
+        "g": "fd6c07a75a973db4",
+        "name": "result",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "payload",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 430,
+        "y": 1380,
+        "wires": [
+            [
+                "fa67b1a60b0a4b12"
+            ]
+        ],
+        "icon": "font-awesome/fa-check-square"
+    },
+    {
+        "id": "54c32a603cfae4d1",
+        "type": "change",
+        "z": "63660bf2c87aa5d2",
+        "g": "937c445cda43e2d5",
+        "name": "result",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "payload",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 430,
+        "y": 1700,
+        "wires": [
+            [
+                "6cefc819efb49be2"
+            ]
+        ],
+        "icon": "font-awesome/fa-check-square"
+    },
+    {
+        "id": "2064fa581c2587df",
+        "type": "change",
+        "z": "63660bf2c87aa5d2",
+        "g": "757f3638b8761640",
+        "name": "result",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "payload",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 430,
+        "y": 160,
+        "wires": [
+            [
+                "565e2a5d5759b9f9"
+            ]
+        ],
+        "icon": "font-awesome/fa-check-square"
+    },
+    {
+        "id": "1d4697d83771ee9b",
         "type": "comment",
-        "z": "882c4289af40f333",
-        "name": "ollama を呼び出し、その内容をどうにかするフロー",
+        "z": "63660bf2c87aa5d2",
+        "name": "get_time",
         "info": "",
-        "x": 230,
-        "y": 80,
+        "x": 160,
+        "y": 60,
         "wires": []
+    },
+    {
+        "id": "75ac7f38fb9ee2fa",
+        "type": "comment",
+        "z": "63660bf2c87aa5d2",
+        "name": "myadd",
+        "info": "",
+        "x": 150,
+        "y": 260,
+        "wires": []
+    },
+    {
+        "id": "9e0037eaa670a702",
+        "type": "comment",
+        "z": "63660bf2c87aa5d2",
+        "name": "get_weather",
+        "info": "",
+        "x": 170,
+        "y": 720,
+        "wires": []
+    },
+    {
+        "id": "73a6fba1b84cb2c2",
+        "type": "comment",
+        "z": "63660bf2c87aa5d2",
+        "name": "create_qrcode",
+        "info": "",
+        "x": 170,
+        "y": 460,
+        "wires": []
+    },
+    {
+        "id": "8bedba91f6ce51d2",
+        "type": "comment",
+        "z": "63660bf2c87aa5d2",
+        "name": "push_gitlab",
+        "info": "",
+        "x": 170,
+        "y": 1100,
+        "wires": []
+    },
+    {
+        "id": "0ebb32388782d116",
+        "type": "comment",
+        "z": "63660bf2c87aa5d2",
+        "name": "post_slack",
+        "info": "",
+        "x": 160,
+        "y": 1480,
+        "wires": []
+    },
+    {
+        "id": "d81cd82767847310",
+        "type": "change",
+        "z": "63660bf2c87aa5d2",
+        "g": "757f3638b8761640",
+        "name": "get_time",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "{\t    \"datetime\": $fromMillis($millis(), \"[Y0001]-[M01]-[D01] [H01]:[m01]:[s01]\", \"+0900\"),\t    \"timezone\": \"Asia/Tokyo\"\t}",
+                "tot": "jsonata"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 440,
+        "y": 100,
+        "wires": [
+            [
+                "2064fa581c2587df"
+            ]
+        ],
+        "icon": "font-awesome/fa-clock-o"
+    },
+    {
+        "id": "843fe670aac28387",
+        "type": "template",
+        "z": "63660bf2c87aa5d2",
+        "g": "a30da680b9506adf",
+        "name": "region data",
+        "field": "database",
+        "fieldType": "msg",
+        "format": "yaml",
+        "syntax": "mustache",
+        "template": "region:\n- name: 宗谷地方\n  code: 011000\n- name: 上川・留萌地方\n  code: 012000\n- name: 石狩・空知・後志地方\n  code: 016000\n- name: 網走・北見・紋別地方\n  code: 013000\n- name: 釧路・根室地方・十勝地方\n  code: 014100\n- name: 胆振・日高地方\n  code: 015000\n- name: 渡島・檜山地方\n  code: 017000\n- name: 青森県\n  code: 020000\n- name: 秋田県\n  code: 050000\n- name: 岩手県\n  code: 030000\n- name: 宮城県\n  code: 040000\n- name: 山形県\n  code: 060000\n- name: 福島県\n  code: 070000\n- name: 茨城県\n  code: 080000\n- name: 栃木県\n  code: 090000\n- name: 群馬県\n  code: 100000\n- name: 埼玉県\n  code: 110000\n- name: 東京都\n  code: 130000\n- name: 千葉県\n  code: 120000\n- name: 神奈川県\n  code: 140000\n- name: 長野県\n  code: 200000\n- name: 山梨県\n  code: 190000\n- name: 静岡県\n  code: 220000\n- name: 愛知県\n  code: 230000\n- name: 岐阜県\n  code: 210000\n- name: 三重県\n  code: 240000\n- name: 新潟県\n  code: 150000\n- name: 富山県\n  code: 160000\n- name: 石川県\n  code: 170000\n- name: 福井県\n  code: 180000\n- name: 滋賀県\n  code: 250000\n- name: 京都府\n  code: 260000\n- name: 大阪府\n  code: 270000\n- name: 兵庫県\n  code: 280000\n- name: 奈良県\n  code: 290000\n- name: 和歌山県\n  code: 300000\n- name: 岡山県\n  code: 330000\n- name: 広島県\n  code: 340000\n- name: 島根県\n  code: 320000\n- name: 鳥取県\n  code: 310000\n- name: 徳島県\n  code: 360000\n- name: 香川県\n  code: 370000\n- name: 愛媛県\n  code: 380000\n- name: 高知県\n  code: 390000\n- name: 山口県\n  code: 350000\n- name: 福岡県\n  code: 400000\n- name: 大分県\n  code: 440000\n- name: 長崎県\n  code: 420000\n- name: 佐賀県\n  code: 410000\n- name: 熊本県\n  code: 430000\n- name: 宮崎県\n  code: 450000\n- name: 鹿児島県・奄美地方\n  code: 460100\n- name: 沖縄本島地方\n  code: 471000\n- name: 大東島地方\n  code: 472000\n- name: 宮古島地方\n  code: 473000\n- name: 八重山地方\n  code: 474000\n",
+        "output": "yaml",
+        "x": 450,
+        "y": 760,
+        "wires": [
+            [
+                "3b3c71d09993ffa7"
+            ]
+        ],
+        "icon": "font-awesome/fa-database"
+    },
+    {
+        "id": "3b3c71d09993ffa7",
+        "type": "change",
+        "z": "63660bf2c87aa5d2",
+        "g": "a30da680b9506adf",
+        "name": "filter",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "$.database.region[$contains(name, $$.payload.region)]\t",
+                "tot": "jsonata"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 430,
+        "y": 820,
+        "wires": [
+            [
+                "a3a5b03942c30eb4"
+            ]
+        ]
+    },
+    {
+        "id": "929a26a7ede2fd81",
+        "type": "http request",
+        "z": "63660bf2c87aa5d2",
+        "g": "a30da680b9506adf",
+        "name": "",
+        "method": "GET",
+        "ret": "obj",
+        "paytoqs": "ignore",
+        "url": "",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "insecureHTTPParser": false,
+        "authType": "",
+        "senderr": false,
+        "headers": [],
+        "x": 450,
+        "y": 940,
+        "wires": [
+            [
+                "f8eee699ea867017"
+            ]
+        ],
+        "icon": "font-awesome/fa-sun-o"
+    },
+    {
+        "id": "a3a5b03942c30eb4",
+        "type": "change",
+        "z": "63660bf2c87aa5d2",
+        "g": "a30da680b9506adf",
+        "name": "url",
+        "rules": [
+            {
+                "t": "set",
+                "p": "url",
+                "pt": "msg",
+                "to": "\"https://www.jma.go.jp/bosai/forecast/data/forecast/\" & $.payload.code & \".json\"",
+                "tot": "jsonata"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 430,
+        "y": 880,
+        "wires": [
+            [
+                "929a26a7ede2fd81"
+            ]
+        ]
+    },
+    {
+        "id": "f8eee699ea867017",
+        "type": "change",
+        "z": "63660bf2c87aa5d2",
+        "g": "a30da680b9506adf",
+        "name": "result",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "{\t    \"weather\": $.payload\t}",
+                "tot": "jsonata"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 430,
+        "y": 1000,
+        "wires": [
+            [
+                "62cef6cb340b58b3"
+            ]
+        ],
+        "icon": "font-awesome/fa-check-square"
     }
 ]
