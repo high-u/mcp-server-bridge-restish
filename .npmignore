@@ -1,0 +1,34 @@
+# Source files
+src/
+
+# Development files
+.git/
+.github/
+.vscode/
+.idea/
+.DS_Store
+*.log
+*.tgz
+
+# Configuration files that should not be published
+tsconfig.json
+.eslintrc*
+.prettierrc*
+.editorconfig
+.gitignore
+
+# Test files
+test/
+tests/
+__tests__/
+coverage/
+
+# Documentation files
+docs/
+README-DEV.md
+
+# Node.js dependencies
+node_modules/
+
+# Node-RED flows
+nodered/
