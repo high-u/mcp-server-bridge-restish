@@ -1,6 +1,6 @@
 {
-  "name": "mcp-server-bridge-restish",
-  "version": "0.1.12",
+  "name": "@high-u/mcp-server-bridge-restish",
+  "version": "0.1.0",
   "description": "Bridge Restish MCP Server",
   "type": "module",
   "main": "dist/index.js",
