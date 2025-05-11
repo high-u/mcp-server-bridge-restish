@@ -30,11 +30,11 @@ function jsonToZod(schema: any): ZodTypeAny {
 }
 
 type ToolDef = { name: string; description?: string; schema: any; endpoint: string; method: "get" | "post" };
-const toolDefs: ToolDef[] = await fetch(
+const res = await fetch(
   `${baseUrl}/tools`,
   { headers: { Authorization: `Bearer ${apiKey}` } }
-)
-  .then(res => res.json());
+);
+const toolDefs: ToolDef[] = await res.json();
 for (const def of toolDefs) {
   const shape: Record<string, ZodTypeAny> = {};
   for (const [key, propSchema] of Object.entries(def.schema.properties || {})) {
