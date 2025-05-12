@@ -12,7 +12,7 @@
   ],
   "scripts": {
     "dev": "node --experimental-strip-types --watch src/index.ts",
-    "build": "tsc",
+    "build": "ncc build src/index.ts -o dist --minify --source-map",
     "prepare": "npm run build",
     "start": "node dist/index.js",
     "postinstall": "npm run build"
@@ -23,6 +23,7 @@
   },
   "devDependencies": {
     "@types/node": "^22.14.1",
+    "@vercel/ncc": "^0.38.3",
     "esbuild": "^0.25.4",
     "typescript": "^5.8.3",
     "vite": "^6.3.5"
