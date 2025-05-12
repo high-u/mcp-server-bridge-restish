@@ -1,13 +1,12 @@
 #!/usr/bin/env node
 
-import { McpServer, ResourceTemplate } from "@modelcontextprotocol/sdk/server/mcp.js";
-import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js";
+import { FastMCP } from "fastmcp";
 import { z, ZodTypeAny } from "zod";
 
 const baseUrl = process.argv[2] ?? "http://localhost:3000";
 const apiKey = process.argv[3] ?? "";
 
-const server = new McpServer({
+const server = new FastMCP({
   name: "BridgeRestish",
   version: "1.0.0"
 });
@@ -40,13 +39,13 @@ try {
   );
   toolDefs = await res.json();
 } catch (e) {
-  server.tool(
-    "not_found",
-    {},
-    async (_args: any, _ctx: any) => ({
+  server.addTool({
+    name: "not_found",
+    parameters: z.object({}),
+    execute: async (_args: any) => ({
       content: [{ type: "text", text: "Tool definitions not available" }]
     })
-  );
+  });
   toolDefs = [];
 }
 for (const def of toolDefs) {
@@ -54,10 +53,11 @@ for (const def of toolDefs) {
   for (const [key, propSchema] of Object.entries(def.schema.properties || {})) {
     shape[key] = jsonToZod(propSchema);
   }
-  server.tool(
-    def.name,
-    shape,
-    async (args: any, _ctx: any) => {
+  server.addTool({
+    name: def.name,
+    description: def.description,
+    parameters: z.object(shape),
+    execute: async (args: any) => {
       let res: Response;
       try {
         if (def.method === "get") {
@@ -87,21 +87,24 @@ for (const def of toolDefs) {
         throw e;
       }
     }
-  );
+  });
 }
 
-server.resource(
-  "dummy",
-  new ResourceTemplate("dummy://{dummy}", { list: undefined }),
-  async (uri, { dummy }) => {
+server.addResourceTemplate({
+  uriTemplate: "dummy://{dummy}",
+  name: "dummy",
+  arguments: [
+    {
+      name: "dummy",
+      description: "Dummy argument",
+      required: true,
+    },
+  ],
+  async load({ dummy }: { dummy: string }) {
     return {
-      contents: [{
-        uri: uri.href,
-        text: `${dummy}`
-      }]
+      text: `${dummy}`
     };
   }
-);
+});
 
-const transport = new StdioServerTransport();
-await server.connect(transport);
+server.start({ transportType: "stdio" });
