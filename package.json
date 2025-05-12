@@ -12,7 +12,7 @@
   ],
   "scripts": {
     "dev": "node --experimental-strip-types --watch src/index.ts",
-    "build": "esbuild src/index.ts --bundle --outfile=dist/index.js --platform=node --format=esm --external:effect --external:@valibot/to-json-schema --external:path --external:fs --external:http --external:https --external:url --external:crypto --external:stream --external:util --external:events --external:os --external:buffer --external:string_decoder --external:zlib --external:async_hooks --external:http2 --external:diagnostics_channel",
+    "build": "tsc",
     "prepare": "npm run build",
     "start": "node dist/index.js",
     "postinstall": "npm run build"
