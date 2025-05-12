@@ -22,11 +22,7 @@ function jsonToZod(schema: any): ZodTypeAny {
       }
       return z.object(shape);
     }
-    case "string":  return z.string();
-    case "number":  return z.number();
-    case "boolean": return z.boolean();
-    case "array":   return z.array(jsonToZod((schema as any).items));
-    default:         return z.any();
+    default: return z.any();
   }
 }
 
@@ -89,22 +85,5 @@ for (const def of toolDefs) {
     }
   });
 }
-
-server.addResourceTemplate({
-  uriTemplate: "dummy://{dummy}",
-  name: "dummy",
-  arguments: [
-    {
-      name: "dummy",
-      description: "Dummy argument",
-      required: true,
-    },
-  ],
-  async load({ dummy }: { dummy: string }) {
-    return {
-      text: `${dummy}`
-    };
-  }
-});
 
 server.start({ transportType: "stdio" });
