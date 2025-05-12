@@ -19,7 +19,7 @@ export default defineConfig({
       external: [
         'node:buffer', 'node:crypto', 'node:events', 'node:fs', 'node:http', 'node:https', 'node:net',
         'node:os', 'node:path', 'node:stream', 'node:string_decoder', 'node:url', 'node:util', 'node:zlib',
-        'node:diagnostics_channel', 'diagnostics_channel',
+        'node:diagnostics_channel', 'diagnostics_channel', 'node:http2', 'http2',
         'fs', 'path', 'os', 'crypto', 'stream', 'util', 'events', 'http', 'https', 'net', 'zlib',
         'url', 'string_decoder', 'buffer', 'async_hooks', 'timers/promises', 'fs/promises'
       ],
