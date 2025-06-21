@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 import { FastMCP } from "fastmcp";
-import { z, ZodTypeAny } from "zod";
+import { z, ZodType } from "zod";
 
 const baseUrl = process.argv[2] ?? "http://localhost:3000";
 const apiKey = process.argv[3] ?? "";
@@ -11,11 +11,11 @@ const server = new FastMCP({
   version: "1.0.0"
 });
 
-function jsonToZod(schema: any): ZodTypeAny {
+function jsonToZod(schema: any): ZodType {
   switch (schema.type) {
     case "object": {
       const requiredKeys = Array.isArray(schema.required) ? schema.required : [];
-      const shape: Record<string, ZodTypeAny> = {};
+      const shape: Record<string, ZodType> = {};
       for (const [key, propSchema] of Object.entries(schema.properties || {})) {
         const propZod = jsonToZod(propSchema);
         shape[key] = requiredKeys.includes(key) ? propZod : propZod.optional();
@@ -47,7 +47,7 @@ async function setupTools() {
     toolDefs = [];
   }
   for (const def of toolDefs) {
-    const shape: Record<string, ZodTypeAny> = {};
+    const shape: Record<string, ZodType> = {};
     for (const [key, propSchema] of Object.entries(def.schema.properties || {})) {
       shape[key] = jsonToZod(propSchema);
     }
