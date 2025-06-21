@@ -14,8 +14,7 @@
     "dev": "node --experimental-strip-types --watch src/index.ts",
     "build": "node esbuild.config.js",
     "prepare": "npm run build",
-    "start": "node dist/index.cjs",
-    "postinstall": "npm run build"
+    "start": "node dist/index.cjs"
   },
   "dependencies": {
     "fastmcp": "^1.27.6",
