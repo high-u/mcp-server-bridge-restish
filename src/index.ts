@@ -27,63 +27,68 @@ function jsonToZod(schema: any): ZodTypeAny {
 }
 
 type ToolDef = { name: string; description?: string; schema: any; endpoint: string; method: "get" | "post" };
-let toolDefs: ToolDef[];
-try {
-  const res = await fetch(
-    `${baseUrl}/tools`,
-    { headers: { Authorization: `Bearer ${apiKey}` } }
-  );
-  toolDefs = await res.json();
-} catch (e) {
-  server.addTool({
-    name: "not_found",
-    parameters: z.object({}),
-    execute: async (_args: any) => ({
-      content: [{ type: "text", text: "Tool definitions not available" }]
-    })
-  });
-  toolDefs = [];
-}
-for (const def of toolDefs) {
-  const shape: Record<string, ZodTypeAny> = {};
-  for (const [key, propSchema] of Object.entries(def.schema.properties || {})) {
-    shape[key] = jsonToZod(propSchema);
+
+async function setupTools() {
+  let toolDefs: ToolDef[];
+  try {
+    const res = await fetch(
+      `${baseUrl}/tools`,
+      { headers: { Authorization: `Bearer ${apiKey}` } }
+    );
+    toolDefs = await res.json();
+  } catch (e) {
+    server.addTool({
+      name: "not_found",
+      parameters: z.object({}),
+      execute: async (_args: any) => ({
+        content: [{ type: "text", text: "Tool definitions not available" }]
+      })
+    });
+    toolDefs = [];
   }
-  server.addTool({
-    name: def.name,
-    description: def.description,
-    parameters: z.object(shape),
-    execute: async (args: any) => {
-      let res: Response;
-      try {
-        if (def.method === "get") {
-          const params = new URLSearchParams();
-          Object.entries(args).forEach(([k, v]) => params.append(k, String(v)));
-          const url = `${baseUrl}${def.endpoint}?${params.toString()}`;
-          res = await fetch(
-            url,
-            { method: "GET", headers: { Authorization: `Bearer ${apiKey}` } }
-          );
-        } else {
-          res = await fetch(
-            `${baseUrl}${def.endpoint}`,
-            {
-              method: "POST",
-              headers: {
-                "Content-Type": "application/json",
-                Authorization: `Bearer ${apiKey}`
-              },
-              body: JSON.stringify(args),
-            }
-          );
-        }
-        const data = await res.json();
-        return { content: [{ type: "text", text: JSON.stringify(data) }] };
-      } catch (e) {
-        throw e;
-      }
+  for (const def of toolDefs) {
+    const shape: Record<string, ZodTypeAny> = {};
+    for (const [key, propSchema] of Object.entries(def.schema.properties || {})) {
+      shape[key] = jsonToZod(propSchema);
     }
-  });
+    server.addTool({
+      name: def.name,
+      description: def.description,
+      parameters: z.object(shape),
+      execute: async (args: any) => {
+        let res: Response;
+        try {
+          if (def.method === "get") {
+            const params = new URLSearchParams();
+            Object.entries(args).forEach(([k, v]) => params.append(k, String(v)));
+            const url = `${baseUrl}${def.endpoint}?${params.toString()}`;
+            res = await fetch(
+              url,
+              { method: "GET", headers: { Authorization: `Bearer ${apiKey}` } }
+            );
+          } else {
+            res = await fetch(
+              `${baseUrl}${def.endpoint}`,
+              {
+                method: "POST",
+                headers: {
+                  "Content-Type": "application/json",
+                  Authorization: `Bearer ${apiKey}`
+                },
+                body: JSON.stringify(args),
+              }
+            );
+          }
+          const data = await res.json();
+          return { content: [{ type: "text", text: JSON.stringify(data) }] };
+        } catch (e) {
+          throw e;
+        }
+      }
+    });
+  }
 }
 
-server.start({ transportType: "stdio" });
+setupTools().then(() => {
+  server.start({ transportType: "stdio" });
+});
