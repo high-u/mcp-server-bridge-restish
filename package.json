@@ -17,7 +17,7 @@
     "start": "node dist/index.cjs"
   },
   "dependencies": {
-    "fastmcp": "^1.27.6",
+    "fastmcp": "^3.5.0",
     "zod": "^3.24.3"
   },
   "devDependencies": {

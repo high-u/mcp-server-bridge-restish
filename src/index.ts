@@ -113,5 +113,5 @@ async function setupTools() {
 }
 
 setupTools().then(() => {
-  server.start({ transportType: "stdio" });
+  server.start();
 });
