@@ -3,8 +3,9 @@
 import { FastMCP } from "fastmcp";
 import { z, ZodType } from "zod";
 
-const baseUrl = process.env.BASE_URL ?? process.argv[2] ?? "http://localhost:3000";
-const apiKey = process.env.API_KEY ?? process.argv[3] ?? "";
+const baseUrl = process.env.BASE_URL ?? "http://localhost:3000";
+const apiKey = process.env.API_KEY ??  "";
+const authType = process.env.AUTH_TYPE ?? "";
 
 const server = new FastMCP({
   name: "BridgeRestish",
@@ -42,14 +43,19 @@ function jsonToZod(schema: any): ZodType {
   }
 }
 
-type ToolDef = { name: string; description?: string; schema: any; endpoint: string; method: "get" | "post" };
+type ToolDef = { name: string; description?: string; schema: any; endpoint: string; method: "get" | "post" | "put" | "patch" | "delete" };
 
 async function setupTools() {
   let toolDefs: ToolDef[];
   try {
+    const headers: Record<string, string> = {};
+    if (apiKey) {
+      headers.Authorization = authType ? `${authType} ${apiKey}` : apiKey;
+    }
+
     const res = await fetch(
       `${baseUrl}/tools`,
-      { headers: { Authorization: `Bearer ${apiKey}` } }
+      { headers }
     );
     toolDefs = await res.json();
   } catch (e) {
@@ -70,22 +76,27 @@ async function setupTools() {
       execute: async (args: any) => {
         let res: Response;
         try {
+          const headers: Record<string, string> = {};
+          if (apiKey) {
+            headers.Authorization = authType ? `${authType} ${apiKey}` : apiKey;
+          }
+
           if (def.method === "get") {
             const params = new URLSearchParams();
             Object.entries(args).forEach(([k, v]) => params.append(k, String(v)));
             const url = `${baseUrl}${def.endpoint}?${params.toString()}`;
             res = await fetch(
               url,
-              { method: "GET", headers: { Authorization: `Bearer ${apiKey}` } }
+              { method: "GET", headers }
             );
           } else {
             res = await fetch(
               `${baseUrl}${def.endpoint}`,
               {
-                method: "POST",
+                method: def.method.toUpperCase(),
                 headers: {
                   "Content-Type": "application/json",
-                  Authorization: `Bearer ${apiKey}`
+                  ...headers
                 },
                 body: JSON.stringify(args),
               }

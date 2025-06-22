@@ -1,6 +1,8 @@
 import http from 'http';
 import { URL } from 'url';
 
+const PORT = process.argv[2] || 3000;
+
 const server = http.createServer((req, res) => {
   const parsedUrl = new URL(req.url, `http://${req.headers.host}`);
   
@@ -59,7 +61,6 @@ const server = http.createServer((req, res) => {
   }
 });
 
-const PORT = 3003;
 server.listen(PORT, () => {
   console.log(`Example HTTP API server running on http://localhost:${PORT}`);
   console.log('Available endpoints:');
