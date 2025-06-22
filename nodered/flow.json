@@ -168,7 +168,8 @@
         "y": 120,
         "wires": [
             [
-                "bcbc0554649da10c"
+                "bcbc0554649da10c",
+                "a653f72d12162ced"
             ]
         ],
         "l": false
@@ -266,11 +267,9 @@
         "template": "name: push_gitlab\ndescription: ソースコードをGitlabにプッシュする\nschema:\n  type: object\n  properties:\n    sourcecode:\n      type: string\n      description: プッシュするソースコード\n    required:\n    - sourcecode\nendpoint: \"/push_gitlab\"\nmethod: post\n",
         "output": "yaml",
         "x": 350,
-        "y": 360,
+        "y": 520,
         "wires": [
-            [
-                "aac2d292d1d84650"
-            ]
+            []
         ],
         "icon": "font-awesome/fa-file-text"
     },
@@ -283,7 +282,7 @@
         "fieldType": "msg",
         "format": "yaml",
         "syntax": "mustache",
-        "template": "name: post_slack\ndescription: Slackに投稿する\nschema:\n  type: object\n  properties:\n    postmessage:\n      type: string\n      description: Slackに投稿するメッセージ\n    required:\n    - postmessage\nendpoint: \"/post_slack\"\nmethod: post\n",
+        "template": "name: post_slack\ndescription: Slackに投稿する\nschema:\n  type: object\n  properties:\n    message:\n      type: string\n      description: Slackに投稿するメッセージ。\n    channel:\n      type: string\n      description: 投稿するチャンネルを指定する。選択できるのは、\"random\" か \"general\" 。\n    required:\n    - message\n    - channel\nendpoint: \"/post_slack\"\nmethod: post\n",
         "output": "yaml",
         "x": 350,
         "y": 420,
@@ -310,7 +309,8 @@
         "y": 420,
         "wires": [
             [
-                "900fdb3d1abb1a2e"
+                "900fdb3d1abb1a2e",
+                "f4f5bbb98fb4fc48"
             ]
         ],
         "icon": "node-red/batch.svg",
@@ -355,16 +355,49 @@
         "fieldType": "msg",
         "format": "yaml",
         "syntax": "mustache",
-        "template": "name: get_weather\ndescription: 地方名から天気予報を取得する\nschema:\n  type: object\n  properties:\n    region:\n      type: string\n      description: 地方名\n    required:\n    - region\nendpoint: \"/get_weather\"\nmethod: get\n",
+        "template": "name: get_weather\ndescription: 地方名から天気予報を取得する\nschema:\n  type: object\n  properties:\n    region:\n      type: string\n      description: 都道府県を指定します。\"東京都\" や \"大阪府\" などのように都道府県を付けて指定します。\n    required:\n    - region\nendpoint: \"/get_weather\"\nmethod: get\n",
         "output": "yaml",
         "x": 350,
         "y": 300,
         "wires": [
             [
-                "d4e25b0ccee9e06d"
+                "aac2d292d1d84650"
             ]
         ],
         "icon": "font-awesome/fa-file-text"
+    },
+    {
+        "id": "f4f5bbb98fb4fc48",
+        "type": "debug",
+        "z": "2941705dff14d6d3",
+        "name": "debug 1",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 660,
+        "y": 520,
+        "wires": []
+    },
+    {
+        "id": "a653f72d12162ced",
+        "type": "debug",
+        "z": "2941705dff14d6d3",
+        "name": "debug 2",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 340,
+        "y": 60,
+        "wires": []
     },
     {
         "id": "66b03ff993c43b1e",
@@ -475,36 +508,6 @@
         "l": false
     },
     {
-        "id": "9d3a4ea0bd63dc4b",
-        "type": "qrcode-generator",
-        "z": "63660bf2c87aa5d2",
-        "g": "3acf4410f7d7560d",
-        "name": "",
-        "qrtype": "text2qr",
-        "text2qrText": "",
-        "ssid": "",
-        "hiddenssid": false,
-        "wifitype": "",
-        "phonenum": "",
-        "smsphonenum": "",
-        "smstext": "",
-        "mailto": "",
-        "mailsubject": "",
-        "mailbody": "",
-        "latitude": "",
-        "longitude": "",
-        "colorlight": "#ffffff",
-        "colordark": "#000000",
-        "printstatus": false,
-        "x": 230,
-        "y": 660,
-        "wires": [
-            [
-                "da7f8bb7d2ea26b6"
-            ]
-        ]
-    },
-    {
         "id": "765e91fc76e4ca4d",
         "type": "change",
         "z": "63660bf2c87aa5d2",
@@ -577,7 +580,7 @@
         "z": "63660bf2c87aa5d2",
         "g": "937c445cda43e2d5",
         "name": "Message",
-        "func": "msg.payload = {\n    channel: \"C08R4QYHG83\",\n    text: `${msg.payload.postmessage}`\n};\nreturn msg;\n",
+        "func": "const channels = {\n    random: \"C08R4QYHG83\",\n    general: \"C09355YF5JL\"\n}\nmsg.payload = {\n    channel: `${channels[msg.payload.channel]}`,\n    text: `${msg.payload.message}`\n};\nreturn msg;\n",
         "outputs": 1,
         "timeout": 0,
         "noerr": 0,
@@ -667,7 +670,8 @@
         "y": 540,
         "wires": [
             [
-                "9008fa3b4111775e"
+                "9008fa3b4111775e",
+                "810654ea87e6175f"
             ]
         ],
         "l": false
@@ -689,22 +693,6 @@
             ]
         ],
         "l": false
-    },
-    {
-        "id": "7914b52331095538",
-        "type": "base64",
-        "z": "63660bf2c87aa5d2",
-        "g": "fd6c07a75a973db4",
-        "name": "pre processing",
-        "action": "str",
-        "property": "payload.sourcecode",
-        "x": 640,
-        "y": 900,
-        "wires": [
-            [
-                "4165480c9851fe5e"
-            ]
-        ]
     },
     {
         "id": "6cefc819efb49be2",
@@ -741,46 +729,6 @@
         "y": 360,
         "wires": [],
         "l": false
-    },
-    {
-        "id": "e75c3fc290b9ebfc",
-        "type": "credentials",
-        "z": "63660bf2c87aa5d2",
-        "g": "937c445cda43e2d5",
-        "name": "",
-        "props": [
-            {
-                "value": "slackAccessToken",
-                "type": "msg"
-            }
-        ],
-        "x": 630,
-        "y": 600,
-        "wires": [
-            [
-                "7f038afa82e1f798"
-            ]
-        ]
-    },
-    {
-        "id": "b319cbbb86a389af",
-        "type": "credentials",
-        "z": "63660bf2c87aa5d2",
-        "g": "fd6c07a75a973db4",
-        "name": "",
-        "props": [
-            {
-                "value": "gitlabPrivateToken",
-                "type": "msg"
-            }
-        ],
-        "x": 630,
-        "y": 1020,
-        "wires": [
-            [
-                "28c9cbb31244e9d4"
-            ]
-        ]
     },
     {
         "id": "da7f8bb7d2ea26b6",
@@ -922,7 +870,8 @@
         "y": 720,
         "wires": [
             [
-                "6cefc819efb49be2"
+                "6cefc819efb49be2",
+                "903c001564415f12"
             ]
         ],
         "icon": "font-awesome/fa-check-square"
@@ -1176,5 +1125,148 @@
             ]
         ],
         "icon": "font-awesome/fa-check-square"
+    },
+    {
+        "id": "9d3a4ea0bd63dc4b",
+        "type": "qrcode-generator",
+        "z": "63660bf2c87aa5d2",
+        "g": "3acf4410f7d7560d",
+        "name": "",
+        "qrtype": "text2qr",
+        "text2qrText": "",
+        "ssid": "",
+        "hiddenssid": false,
+        "wifitype": "",
+        "phonenum": "",
+        "smsphonenum": "",
+        "smstext": "",
+        "mailto": "",
+        "mailsubject": "",
+        "mailbody": "",
+        "latitude": "",
+        "longitude": "",
+        "colorlight": "#ffffff",
+        "colordark": "#000000",
+        "printstatus": false,
+        "x": 230,
+        "y": 660,
+        "wires": [
+            [
+                "da7f8bb7d2ea26b6"
+            ]
+        ]
+    },
+    {
+        "id": "e75c3fc290b9ebfc",
+        "type": "credentials",
+        "z": "63660bf2c87aa5d2",
+        "g": "937c445cda43e2d5",
+        "name": "",
+        "props": [
+            {
+                "value": "slackAccessToken",
+                "type": "msg"
+            }
+        ],
+        "x": 630,
+        "y": 600,
+        "wires": [
+            [
+                "7f038afa82e1f798"
+            ]
+        ]
+    },
+    {
+        "id": "b319cbbb86a389af",
+        "type": "credentials",
+        "z": "63660bf2c87aa5d2",
+        "g": "fd6c07a75a973db4",
+        "name": "",
+        "props": [
+            {
+                "value": "gitlabPrivateToken",
+                "type": "msg"
+            }
+        ],
+        "x": 630,
+        "y": 1020,
+        "wires": [
+            [
+                "28c9cbb31244e9d4"
+            ]
+        ]
+    },
+    {
+        "id": "7914b52331095538",
+        "type": "base64",
+        "z": "63660bf2c87aa5d2",
+        "g": "fd6c07a75a973db4",
+        "name": "pre processing",
+        "action": "str",
+        "property": "payload.sourcecode",
+        "x": 640,
+        "y": 900,
+        "wires": [
+            [
+                "4165480c9851fe5e"
+            ]
+        ]
+    },
+    {
+        "id": "810654ea87e6175f",
+        "type": "debug",
+        "z": "63660bf2c87aa5d2",
+        "name": "debug 3",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 860,
+        "y": 460,
+        "wires": []
+    },
+    {
+        "id": "f0ea72079333c6fc",
+        "type": "inject",
+        "z": "63660bf2c87aa5d2",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "{\"message\":\"test\",\"channel\":\"general\"}",
+        "payloadType": "json",
+        "x": 250,
+        "y": 840,
+        "wires": [
+            [
+                "9008fa3b4111775e"
+            ]
+        ]
+    },
+    {
+        "id": "903c001564415f12",
+        "type": "debug",
+        "z": "63660bf2c87aa5d2",
+        "name": "debug 4",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 920,
+        "y": 660,
+        "wires": []
     }
 ]
