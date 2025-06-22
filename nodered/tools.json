@@ -1,0 +1,81 @@
+[
+  {
+    "name": "get_time",
+    "description": "現在の日時を返す",
+    "schema": { "type": "object", "properties": {}, "required": [] },
+    "endpoint": "/get_time",
+    "method": "get"
+  },
+  {
+    "name": "myadd",
+    "description": "２つの数値を足し算します",
+    "schema": {
+      "type": "object",
+      "properties": {
+        "a": { "type": "number", "description": "１つ目の値" },
+        "b": { "type": "number", "description": "２つ目の値" }
+      },
+      "required": ["a", "b"]
+    },
+    "endpoint": "/myadd",
+    "method": "get"
+  },
+  {
+    "name": "create_qrcode",
+    "description": "QRコードをDataURIで返す",
+    "schema": {
+      "type": "object",
+      "properties": {
+        "url": { "type": "string", "description": "QRコードに含めるURL" },
+        "required": ["url"]
+      }
+    },
+    "endpoint": "/create_qrcode",
+    "method": "get"
+  },
+  {
+    "name": "get_weather",
+    "description": "地方名から天気予報を取得する",
+    "schema": {
+      "type": "object",
+      "properties": {
+        "region": { "type": "string", "description": "地方名" },
+        "required": ["region"]
+      }
+    },
+    "endpoint": "/get_weather",
+    "method": "get"
+  },
+  {
+    "name": "push_gitlab",
+    "description": "ソースコードをGitlabにプッシュする",
+    "schema": {
+      "type": "object",
+      "properties": {
+        "sourcecode": {
+          "type": "string",
+          "description": "プッシュするソースコード"
+        },
+        "required": ["sourcecode"]
+      }
+    },
+    "endpoint": "/push_gitlab",
+    "method": "post"
+  },
+  {
+    "name": "post_slack",
+    "description": "Slackに投稿する",
+    "schema": {
+      "type": "object",
+      "properties": {
+        "postmessage": {
+          "type": "string",
+          "description": "Slackに投稿するメッセージ"
+        },
+        "required": ["postmessage"]
+      }
+    },
+    "endpoint": "/post_slack",
+    "method": "post"
+  }
+]

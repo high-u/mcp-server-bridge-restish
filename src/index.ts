@@ -3,8 +3,8 @@
 import { FastMCP } from "fastmcp";
 import { z, ZodType } from "zod";
 
-const baseUrl = process.argv[2] ?? "http://localhost:3000";
-const apiKey = process.argv[3] ?? "";
+const baseUrl = process.env.BASE_URL ?? process.argv[2] ?? "http://localhost:3000";
+const apiKey = process.env.API_KEY ?? process.argv[3] ?? "";
 
 const server = new FastMCP({
   name: "BridgeRestish",
@@ -17,10 +17,26 @@ function jsonToZod(schema: any): ZodType {
       const requiredKeys = Array.isArray(schema.required) ? schema.required : [];
       const shape: Record<string, ZodType> = {};
       for (const [key, propSchema] of Object.entries(schema.properties || {})) {
-        const propZod = jsonToZod(propSchema);
+        const propSchemaAny = propSchema as any;
+        let propZod = jsonToZod(propSchemaAny);
+        if (propSchemaAny.description) {
+          propZod = propZod.describe(propSchemaAny.description);
+        }
         shape[key] = requiredKeys.includes(key) ? propZod : propZod.optional();
       }
       return z.object(shape);
+    }
+    case "string": {
+      let zodSchema = z.string();
+      return schema.description ? zodSchema.describe(schema.description) : zodSchema;
+    }
+    case "number": {
+      let zodSchema = z.number();
+      return schema.description ? zodSchema.describe(schema.description) : zodSchema;
+    }
+    case "boolean": {
+      let zodSchema = z.boolean();
+      return schema.description ? zodSchema.describe(schema.description) : zodSchema;
     }
     default: return z.any();
   }
@@ -47,14 +63,10 @@ async function setupTools() {
     toolDefs = [];
   }
   for (const def of toolDefs) {
-    const shape: Record<string, ZodType> = {};
-    for (const [key, propSchema] of Object.entries(def.schema.properties || {})) {
-      shape[key] = jsonToZod(propSchema);
-    }
     server.addTool({
       name: def.name,
       description: def.description,
-      parameters: z.object(shape),
+      parameters: jsonToZod(def.schema),
       execute: async (args: any) => {
         let res: Response;
         try {
