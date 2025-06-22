@@ -13,6 +13,26 @@ const server = new FastMCP({
 });
 
 function jsonToZod(schema: any): ZodType {
+
+  if (schema.enum && Array.isArray(schema.enum) && schema.enum.length > 0) {
+    const allStrings = schema.enum.every((val: any) => typeof val === 'string');
+    if (allStrings) {
+      let enumSchema = z.enum(schema.enum as [string, ...string[]]);
+      return schema.description ? enumSchema.describe(schema.description) : enumSchema;
+    }
+    
+    const allNumbers = schema.enum.every((val: any) => typeof val === 'number');
+    if (allNumbers) {
+      const literals = schema.enum.map((val: any) => z.literal(val));
+      let unionSchema = z.union(literals as [ZodType, ZodType, ...ZodType[]]);
+      return schema.description ? unionSchema.describe(schema.description) : unionSchema;
+    }
+    
+    const literals = schema.enum.map((val: any) => z.literal(val));
+    let unionSchema = z.union(literals as [ZodType, ZodType, ...ZodType[]]);
+    return schema.description ? unionSchema.describe(schema.description) : unionSchema;
+  }
+
   switch (schema.type) {
     case "object": {
       const requiredKeys = Array.isArray(schema.required) ? schema.required : [];
